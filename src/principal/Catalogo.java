@@ -51,4 +51,25 @@ public class Catalogo {
 	{
 		return productos;
 	}
+	
+	public boolean existeProducto(int cod)
+	{
+		boolean ret=false;
+		for(int i=0;!ret && i<productos.size();i++)
+			if(productos.get(i).getCodigo()==cod) ret=true;
+		
+		return ret;
+	}
+	
+	public Producto getProducto(int cod)
+	{
+		Producto p = null;
+		boolean ret=false;
+		for(int i=0;!ret && i<productos.size();i++)
+			if(productos.get(i).getCodigo()==cod){
+				ret=true;
+				p = productos.get(i);
+			}
+		return p;
+	}
 }
