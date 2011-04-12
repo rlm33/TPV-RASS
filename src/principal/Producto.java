@@ -2,7 +2,7 @@ package principal;
 
 public class Producto {
 
-	private int codigo; //DEBERIA SER STRING PARA CONSERVAR LOS CEROS A LA DERECHA? 
+	private int codigo; //DEBERIA SER STRING PARA CONSERVAR LOS CEROS A LA IZQUIERDA? 
 	private String descripcion;
 	private float pvp;
 	

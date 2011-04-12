@@ -7,7 +7,7 @@ import java.util.Properties;
 public class Propiedades {
 
 	private static Propiedades prop=null;
-	private final String path="/home/raito/NetBeansProjects/TPV-CATALOGO/TPV.properties";
+	private final String path="C:\\Users\\Sergio\\TPV-RASS\\TPV.properties";
 	private Properties propiedades;
 	
 	private Propiedades() throws IOException
