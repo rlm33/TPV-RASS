@@ -17,7 +17,10 @@ public class Catalogo {
 	private static Catalogo instancia = null;
 	
 	private Catalogo()
-	{				
+	{
+		//numItemsMemoria = Integer.valueOf(Propiedades.getProperty("Catalogo.numItemsMemoria"));
+		EntradaCatalogo ec = new ProductoCSV();		
+		productos = ec.obtenerEntrada();
 	}
 	
 	@SuppressWarnings("unused")
@@ -59,12 +62,6 @@ public class Catalogo {
 				p = productos.get(i);
 			}
 		return p;
-	}
-	
-	public void inicializar(){
-		//numItemsMemoria = Integer.valueOf(Propiedades.getProperty("Catalogo.numItemsMemoria"));
-		Entrada ec = new ProductoCSV();		
-		productos = ec.obtenerEntrada();
 	}
 	
 	//El metodo "clone" es sobreescrito por el siguiente que arroja una excepción:
