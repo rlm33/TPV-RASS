@@ -4,10 +4,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Es la encargada de obtener las distintas propiedades del fichero "Propiedades TPV".
+ * Para obtenerlos, lo haremos mediante la función de GET y pasándole la posición del atributo que queremos obtener
+ * @author RASS-TPV
+ *
+ */
 public class Propiedades {
 
 	private static Propiedades prop=null;
-	private final String path="C:\\Users\\Sergio\\TPV-RASS\\TPV.properties";
+	private final String path="TPV.properties";
 	private Properties propiedades;
 	
 	private Propiedades() throws IOException
@@ -33,9 +39,9 @@ public class Propiedades {
 		return propiedades;
 	}
 
-        public static String getProperty(String p) throws IOException
-        {
-            return getInstancia().getPropiedades().getProperty(p);
-        }
+    public static String getProperty(String p) throws IOException
+    {
+        return getInstancia().getPropiedades().getProperty(p);
+    }
 	
 }
