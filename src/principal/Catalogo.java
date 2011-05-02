@@ -5,22 +5,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 //import utilidades.Propiedades;
 
+/**
+ * Catalogo
+ * @author RASS
+ * Se trata de una clase Singleton. Esto es así ya que únicamente tenemos que cargar el catálogo una vez, al principio del programa.
+ */
 public class Catalogo {
 
 	//private int numItemsMemoria;
 	private ArrayList<Producto> productos;
-	private static Catalogo instancia=null;
+	private static Catalogo instancia = null;
 	
-	private Catalogo() throws IOException
-	{
-		//numItemsMemoria = Integer.valueOf(Propiedades.getProperty("Catalogo.numItemsMemoria"));
-
-		EntradaCatalogo ec = new ProductoCSV();
-		
-		productos = ec.obtenerEntrada();
-		
-		
-	}	
+	private Catalogo()
+	{				
+	}
+	
+	@SuppressWarnings("unused")
+	private synchronized static void createInstance() throws IOException {
+        if (instancia == null) { 
+            instancia = new Catalogo();
+        }
+    }
 	
 	public static Catalogo getInstancia() throws IOException
 	{
@@ -55,4 +60,16 @@ public class Catalogo {
 			}
 		return p;
 	}
+	
+	public void inicializar(){
+		//numItemsMemoria = Integer.valueOf(Propiedades.getProperty("Catalogo.numItemsMemoria"));
+		Entrada ec = new ProductoCSV();		
+		productos = ec.obtenerEntrada();
+	}
+	
+	//El metodo "clone" es sobreescrito por el siguiente que arroja una excepción:
+	public Object clone() throws CloneNotSupportedException {
+	        throw new CloneNotSupportedException(); 
+	}
+
 }
