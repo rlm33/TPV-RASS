@@ -8,7 +8,6 @@ public class Tarjeta extends Descuento{
 
 	public Tarjeta()
 	{
-		
 		try {
 			descuento = Integer.valueOf(Propiedades.getProperty("DctoTarjetaFid.porcentaje"));
 			
