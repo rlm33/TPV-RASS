@@ -2,7 +2,7 @@ package principal;
 
 public abstract class Descuento {
 
-	int descuento;
+	protected int descuento;
 
 	public int getDescuento() {
 		return descuento;
