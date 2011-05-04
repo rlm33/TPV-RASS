@@ -18,7 +18,7 @@ public class EntradaXML extends Entrada {
 	private Tarjeta tarjeta = new Tarjeta();
 	private boolean empleado = false;
 
-	public EntradaXML(String fic){
+	public EntradaXML(String ficheroVenta){
 		  try{ 
 			  
 			     SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -94,7 +94,7 @@ public class EntradaXML extends Entrada {
 			 
 			      };
 			 
-			      saxParser.parse("c:\\file.xml", handler);
+			      saxParser.parse(ficheroVenta, handler);
 			 
 			    } catch (Exception e) {
 			      e.printStackTrace();
