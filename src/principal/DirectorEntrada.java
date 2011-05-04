@@ -8,4 +8,8 @@ public class DirectorEntrada {
 		this.entrada = entrada;
 	}
 	
+	public Entrada getEntrada(){
+		return this.entrada;
+	}
+	
 }
