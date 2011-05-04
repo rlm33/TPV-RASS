@@ -17,6 +17,12 @@ public class DiaDescuento {
 	/*
 	 * CONSTRUCTORES
 	 */
+	public DiaDescuento(){
+		this.dia = new ArrayList<DiaSemana>();
+		this.horaInicio = -1;
+		this.horaFin = -1;
+	}
+	
 	public DiaDescuento(ArrayList<DiaSemana> dia, int horaInicio, int horaFin) {
 		if(this.dia.isEmpty()){
 			this.dia = new ArrayList<DiaSemana>();
