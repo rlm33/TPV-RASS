@@ -1,7 +1,19 @@
 <?xml version="1.0"?>
-<company>
+<venta>
+	<fecha>
+		<dia>L|M|X|J|V|S|D</dia>
+		<hora>HH:MM</hora>
+	</fecha>
 	<linventa>
 		<codProd>X</codProd>
 		<cant>Y</cant>
 	</linventa>
-</company>
+	<linventa>
+		<codProd>X</codProd>
+		<cant>Y</cant>
+	</linventa>
+	<cliente>
+		<tarjetaFid>true</tarjetaFid>
+		<empleado>false</empleado>
+	</cliente>
+</venta>
