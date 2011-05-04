@@ -16,6 +16,13 @@ public class Pedido {
 	private Tarjeta tarjeta;
 	private boolean empleado;
 	
+	public Pedido(){
+		this.diaDescuento = new DiaDescuento();
+		this.linVentas = new ArrayList<LinVenta>();
+		this.tarjeta = new Tarjeta();
+		this.empleado = false;
+	}
+	
 	public void setDiaDescuento(DiaDescuento diaDescuento) {
 		this.diaDescuento = new DiaDescuento(diaDescuento);
 	}
@@ -27,17 +34,8 @@ public class Pedido {
 	public void setLinVentas(ArrayList<LinVenta> linVentas) {
 		if(this.linVentas.isEmpty()){
 			this.linVentas = new ArrayList<LinVenta>();
-		} else {
-			this.linVentas.clear();
 		}
 		this.linVentas.addAll(linVentas);
-	}
-	
-	public void addLinVentas(LinVenta linVentas) {
-		if(this.linVentas.isEmpty()){
-			this.linVentas = new ArrayList<LinVenta>();
-		}
-		this.linVentas.add(linVentas);
 	}
 	
 	public ArrayList<LinVenta> getLinVentas() {
