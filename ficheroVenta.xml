@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!DOCTYPE venta SYSTEM "http://artemisa.dlsi.ua.es/~ccachero/isi/venta.dtd">
 <venta>
 	<fecha>
 		<dia>L|M|X|J|V|S|D</dia>
@@ -17,3 +18,17 @@
 		<empleado>false</empleado>
 	</cliente>
 </venta>
+
+<!DOCTYPE venta [
+<!ELEMENT venta (fecha, linventa, (linventa|deshacerlinventa|cancelarventa)*,cliente)>
+<!ELEMENT fecha EMPTY>
+<!ELEMENT linventa EMPTY>
+<!ELEMENT cliente EMPTY>
+<!ELEMENT deshacerlinventa (#PCDATA)>
+<!ELEMENT cancelarventa (#PCDATA)>
+<!ATTLIST fecha dia (L,M,X,J,V,S,D) #REQUIRED>
+<!ATTLIST fecha hora CDATA #REQUIRED>
+<!ATTLIST linventa codProd CDATA #REQUIRED>
+<!ATTLIST linventa cant CDATA #REQUIRED>
+<!ATTLIST cliente tarjetaFid (true|false) #REQUIRED>
+<!ATTLIST cliente empleado (true|false) #REQUIRED>
