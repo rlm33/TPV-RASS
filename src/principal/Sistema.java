@@ -21,6 +21,7 @@ public class Sistema {
 	 * @throws IOException Posibles excepciones
 	 */
 	public void inicializar() throws IOException{
+		ventas = new ArrayList<Venta>();
 		propiedades = Propiedades.getInstancia();
 		catalogo = Catalogo.getInstancia();
 	}

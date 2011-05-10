@@ -3,14 +3,17 @@ package principal;
 import java.util.ArrayList;
 
 /**
- * Esta clase nos marca los días en los cuáles se les puede aplicar descuento a una determinada persona.
+ * Esta clase implementa un descuento segun la ubicacion temporal que contiene un dia de la semana y un horario.
  * @author RASS
  *
+ * He optado por quitar el array de dias y cada Descuento de un dia diferente contarlo como otro objeto de tipo
+ * DiaDescuento. De este modo si queremos que haya descuento los lunes de 10 a 12 y los martes de 9 a 11 simplemente
+ * meteremos dos DiaDescuento en el array.
  */
 public class DiaDescuento extends Descuento {
 
-	//Pueden ser varios días, por eso un ArrayList
-	private ArrayList<DiaSemana> dia;
+	
+	private DiaSemana dia;
 	private int horaInicio;
 	private int horaFin;
 	
@@ -18,29 +21,19 @@ public class DiaDescuento extends Descuento {
 	 * CONSTRUCTORES
 	 */
 	public DiaDescuento(){
-		this.dia = new ArrayList<DiaSemana>();
+		this.dia = DiaSemana.NULO;
 		this.horaInicio = -1;
 		this.horaFin = -1;
 	}
 	
-	public DiaDescuento(ArrayList<DiaSemana> dia, int horaInicio, int horaFin) {
-		if(this.dia.isEmpty()){
-			this.dia = new ArrayList<DiaSemana>();
-		} else {
-			this.dia.clear();
-		}
-		this.dia.addAll(dia);
+	public DiaDescuento(DiaSemana dia, int horaInicio, int horaFin) {
+		this.dia = dia;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
 	}
 	
 	public DiaDescuento(DiaDescuento diaDescuento) {
-		if(this.dia.isEmpty()){
-			this.dia = new ArrayList<DiaSemana>();
-		} else {
-			this.dia.clear();
-		}
-		this.dia.addAll(diaDescuento.getDias());
+		this.dia =  diaDescuento.dia;
 		this.horaInicio = diaDescuento.getHoraInicio();
 		this.horaFin = diaDescuento.getHoraFin();
 	}
@@ -48,23 +41,13 @@ public class DiaDescuento extends Descuento {
 	/*
 	 * GETTERS AND SETTERS
 	 */
-	
-	//Añade un único día
-	public void addDia(DiaSemana dia) {
-		this.dia.add(dia);
-	}
-	
-	//Añade todos los días a la vez
-	public void setDias(ArrayList<DiaSemana> dias){
-		if(this.dia.isEmpty()){
-			this.dia = new ArrayList<DiaSemana>();
-		} else {
-			this.dia.clear();
-		}
-		this.dia.addAll(dias);
-	}
 
-	public ArrayList<DiaSemana> getDias() {
+	public void setDia(DiaSemana dia)
+	{
+		this.dia = dia;
+	}
+	
+	public DiaSemana getDia() {
 		return dia;
 	}
 
