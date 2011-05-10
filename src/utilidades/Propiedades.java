@@ -43,5 +43,10 @@ public class Propiedades {
     {
         return getInstancia().getPropiedades().getProperty(p);
     }
+    
+    public static String getProperty(String p, String dflt) throws IOException //Pos si queremos un valor por defecto, mejor usar este y evitamos que no exista la propiedad, comprobar pues si es null, etc, etc.
+    {
+        return getInstancia().getPropiedades().getProperty(p,dflt);
+    }
 	
 }

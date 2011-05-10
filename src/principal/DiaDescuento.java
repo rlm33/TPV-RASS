@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author RASS
  *
  */
-public class DiaDescuento {
+public class DiaDescuento extends Descuento {
 
 	//Pueden ser varios días, por eso un ArrayList
 	private ArrayList<DiaSemana> dia;
@@ -84,5 +84,12 @@ public class DiaDescuento {
 		return horaFin;
 	}
 	
+	@Override
+	public float aplicarDescuento(float desc)
+	{
+		// TODO Mirar si estamos en dia y hora de descuento
+		
+		return desc;
+	}
 	
 }

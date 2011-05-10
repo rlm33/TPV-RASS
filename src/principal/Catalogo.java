@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 //import utilidades.Propiedades;
 
+import utilidades.Propiedades;
+
 /**
  * Catalogo
  * @author RASS
@@ -14,13 +16,32 @@ public class Catalogo {
 
 	//private int numItemsMemoria;
 	private ArrayList<Producto> productos;
+	private int older;
+	private EntradaCatalogo ec;
 	private static Catalogo instancia = null;
 	
 	private Catalogo()
 	{
 		//numItemsMemoria = Integer.valueOf(Propiedades.getProperty("Catalogo.numItemsMemoria"));
-		EntradaCatalogo ec = new ProductoCSV();		
-		productos = ec.obtenerEntrada();
+		this.ec = new ProductoCSV();		
+		productos = this.ec.obtenerEntrada();
+		
+		older=0;
+	}
+	
+	/**
+	 * Si en algún momento queremos obtener el catálogo de otro modo que no sea con "ProductoCSV" 
+	 * habrá que instanciarlo así.
+	 */
+	private Catalogo(EntradaCatalogo ec)
+	{
+		//numItemsMemoria = Integer.valueOf(Propiedades.getProperty("Catalogo.numItemsMemoria"));
+		this.ec = ec;		
+		productos = this.ec.obtenerEntrada();
+		
+		older=0;
+		
+		Catalogo.instancia = this;
 	}
 	
 	@SuppressWarnings("unused")
@@ -43,24 +64,49 @@ public class Catalogo {
 		return productos;
 	}
 	
-	public boolean existeProducto(int cod)
+	public boolean existeProducto(String cod) throws IOException
 	{
 		boolean ret=false;
 		for(int i=0;!ret && i<productos.size();i++)
-			if(productos.get(i).getCodigo()==cod) ret=true;
+		{
+			if(productos.get(i).getCodigo().equals(cod))
+			{
+				ret=true;
+				break;
+			}
+		}
+		if (!ret)
+		{	
+			Producto p = ec.obtenerProducto(cod);
+			if (p!=null)
+			{
+				productos.set(older,p);
+				older++;
+				if (older>=Integer.valueOf(Propiedades.getProperty("Catalogo.numItemsMemoria")))
+				{
+					older=0;
+				}
+				ret = true;
+			}
+		}
 		
 		return ret;
 	}
 	
-	public Producto getProducto(int cod)
+	public Producto getProducto(String cod) throws IOException
 	{
 		Producto p = null;
-		boolean ret=false;
-		for(int i=0;!ret && i<productos.size();i++)
-			if(productos.get(i).getCodigo()==cod){
-				ret=true;
-				p = productos.get(i);
+		if (existeProducto(cod))
+		{
+			for(int i=0;i<productos.size();i++)
+			{
+				if(productos.get(i).getCodigo().equals(cod))
+				{
+					p = productos.get(i);
+					break;
+				}
 			}
+		}
 		return p;
 	}
 	

@@ -9,7 +9,7 @@ public class Empleado extends Descuento {
 	public Empleado()
 	{
 		try {
-			descuento = Integer.valueOf(Propiedades.getProperty("DctoEmpleado.porcentaje"));
+			descuento = Integer.valueOf(Propiedades.getProperty("DctoEmpleado.porcentaje","0"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

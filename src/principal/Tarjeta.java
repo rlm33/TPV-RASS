@@ -9,7 +9,7 @@ public class Tarjeta extends Descuento{
 	public Tarjeta()
 	{
 		try {
-			descuento = Integer.valueOf(Propiedades.getProperty("DctoTarjetaFid.porcentaje"));
+			descuento = Integer.valueOf(Propiedades.getProperty("DctoTarjetaFid.porcentaje","0"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

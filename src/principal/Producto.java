@@ -2,20 +2,21 @@ package principal;
 
 public class Producto {
 
-	private int codigo; //DEBERIA SER STRING PARA CONSERVAR LOS CEROS A LA IZQUIERDA ? 
+	private String codigo; //DEBERIA SER STRING PARA CONSERVAR LOS CEROS A LA IZQUIERDA ? 
+						//MAS BIEN DEBE SER STRING PORQUE ALGUNOS PRODUCTOS TIENEN LETRAS EN LA REFERENCIA!!
 	private String descripcion;
 	private float pvp;
 	
-	public Producto(int codigo, String descripcion, float pvp) {
+	public Producto(String codigo, String descripcion, float pvp) {
 		super();
 		this.codigo = codigo;
 		this.descripcion = descripcion;
 		this.pvp = pvp;
 	}
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	public String getDescripcion() {
@@ -33,7 +34,7 @@ public class Producto {
 	
 	public String toString()
 	{
-		return "Producto nº:"+codigo+" => "+descripcion+" | Precio="+pvp;
+		return "Producto nº: "+codigo+" => "+descripcion+" | Precio="+pvp;
 	}
 	
 	

@@ -23,5 +23,9 @@ public class LinVenta {
 		this.producto = producto;
 	}
 	
+	public float subtotal()
+	{
+		return this.cantidad*this.producto.getPvp();
+	}
 	
 }
