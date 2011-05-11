@@ -9,37 +9,9 @@ import java.util.ArrayList;
  *
  */
 abstract class Entrada {
-	protected Pedido pedido;
-	
-	public void crearNuevoPedido(){
-		pedido = new Pedido();		
+	public Entrada(){
+		
 	}
 	
-	public Pedido getPedido(){
-		return pedido;
-	}
-	
-	public DiaDescuento getDiaDescuento(){
-		return pedido.getDiaDescuento();
-	}
-	
-	public ArrayList<LinVenta> getLinVentas(){
-		return pedido.getLinVentas();
-	}
-	
-	public Tarjeta getTarjeta(){
-		return pedido.getTarjeta();
-	}
-	
-	public boolean getEmpleado(){
-		return pedido.getEmpleado();
-	}
-	
-	public abstract void buildDiaDescuento();
-	
-	public abstract void buildAddLinVentas();
-	
-	public abstract void buildTarjeta();
-	
-	public abstract void buildEmpleado();
+	public abstract ArrayList<String> getLinVenta();
 }
