@@ -1,6 +1,6 @@
 package principal;
 
-import java.util.ArrayList;
+
 
 /**
  * Esta clase implementa un descuento segun la ubicacion temporal que contiene un dia de la semana y un horario.

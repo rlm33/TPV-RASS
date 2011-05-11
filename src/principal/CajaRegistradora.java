@@ -2,14 +2,14 @@ package principal;
 
 public class CajaRegistradora {
 	
-	private int id; //Por ponerle algo
+	private String id; //Por ponerle algo
 	
-	public CajaRegistradora(int id)
+	public CajaRegistradora(String id)
 	{
 		this.id = id;
 	}
 	
-	public int getId()
+	public String getId()
 	{
 		return this.id;
 	}

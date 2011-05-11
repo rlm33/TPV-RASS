@@ -3,6 +3,8 @@ package principal;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import utilidades.Comando;
+import utilidades.CrearNuevaVenta;
 import utilidades.Propiedades;
 
 public class Sistema {
@@ -10,25 +12,29 @@ public class Sistema {
 	private ArrayList<Venta> ventas;
 	private Catalogo catalogo;
 	private Propiedades propiedades;
+	private Entrada entrada;
+	private ArrayList<Comando> comandos;
+	//private Salida salida;
 	
 	public Sistema()
 	{
-		ventas = new ArrayList<Venta>();
+		ventas = null;
+		catalogo = null;
+		propiedades = null;
+		entrada = null;
+		//salida = null;
 	}
 	
 	/**
 	 * Este método es el encargado de cargar las propiedades y la lista de catálogos
 	 * @throws IOException Posibles excepciones
 	 */
-	public void inicializar() throws IOException{
+	public void inicializar(Entrada e/*,Salida s*/) throws IOException{
 		ventas = new ArrayList<Venta>();
 		propiedades = Propiedades.getInstancia();
 		catalogo = Catalogo.getInstancia();
-	}
-	
-	public void anyadirVenta(Venta v)
-	{
-		ventas.add(v);
+		entrada = e;
+		
 	}
 	
 	/**
@@ -40,6 +46,10 @@ public class Sistema {
 	 */
 	public Venta crearNuevaVenta(CajaRegistradora c)
 	{
+		
+		Comando com = new CrearNuevaVenta();
+		com.ejecutar(c);
+		comandos.add(com);
 		Venta v = new Venta(c);
 		ventas.add(v);
 		
@@ -63,7 +73,7 @@ public class Sistema {
 	 * @return
 	 * @throws IOException
 	 */
-	public String anyadirLinVenta(String cod, int cantidad, Venta v) throws IOException
+	/*public String anyadirLinVenta(String cod, int cantidad, Venta v) throws IOException
 	{
 		if (catalogo.existeProducto(cod))
 		{
@@ -75,6 +85,28 @@ public class Sistema {
 		}
 		
 		return "ERROR: PRODUCTO NO CATALOGADO";
+	}*/
+	
+	//ESTA FUNCION NO ESTA TERMINADA
+	public boolean anyadirLinVenta() throws IOException
+	{
+		LinVenta lv = null;//entrada.getLinVenta();
+		boolean res=false;
+		
+		if(lv!=null)
+			{
+				Venta v = ventas.get(ventas.size()-1);
+			
+				if(catalogo.existeProducto(lv.getProducto().getCodigo()))
+					{
+					v.anyadirLinVenta(lv);
+					ventas.set(ventas.size()-1,v);
+					res=true;
+					}
+			}
+		
+		 return res;
+		
 	}
 	
 	public void cerrarVenta(Venta v)
