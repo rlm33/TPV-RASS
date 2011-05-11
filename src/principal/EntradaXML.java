@@ -1,128 +1,97 @@
 package principal;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
- 
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class EntradaXML extends Entrada {
+	
+	private DocumentBuilderFactory factory;
+	private Document documento;
+	private DocumentBuilder builder;
+	private Node raiz;
+	private NodeList hijos;
+	private Node fecha;
+	private Node cliente;
+	private int pos;
 
+	public EntradaXML(String fichero) throws ParserConfigurationException, SAXException, IOException{
+		super();
+		 this.builder = factory.newDocumentBuilder();
+		 this.documento = builder.parse(new File(fichero));
+		 this.raiz = documento.getFirstChild();
+		 this.hijos = this.raiz.getChildNodes();
+		 if(this.hijos.getLength() >= 2){
+			 this.fecha = sacarFecha();
+			 this.cliente = sacarCliente();
+		 }
+		 this.pos = 1;
+	}
 
-	private DiaDescuento diaDescuento = new DiaDescuento();
-	private ArrayList<LinVenta> linVentas = new ArrayList<LinVenta>();
-	private Tarjeta tarjeta = new Tarjeta();
-	private boolean empleado = false;
+	private Node sacarCliente() {
+		return this.hijos.item(this.hijos.getLength() - 1);
+	}
 
-	public EntradaXML(String ficheroVenta){
-		  try{ 
-			  
-			     SAXParserFactory factory = SAXParserFactory.newInstance();
-			     SAXParser saxParser = factory.newSAXParser();
-			 
-			     DefaultHandler handler = new DefaultHandler() {
-			 
-			     boolean bfname = false;
-			     boolean blname = false;
-			     boolean bnname = false;
-			     boolean bsalary = false;
-			 
-			     public void startElement(String uri, String localName,
-			        String qName, Attributes attributes)
-			        throws SAXException {
-			 
-			        System.out.println("Start Element :" + qName);
-			 
-			        if (qName.equalsIgnoreCase("FIRSTNAME")) {
-			           bfname = true;
-			        }
-			 
-			        if (qName.equalsIgnoreCase("LASTNAME")) {
-			           blname = true;
-			        }
-			 
-			        if (qName.equalsIgnoreCase("NICKNAME")) {
-			           bnname = true;
-			        }
-			 
-			        if (qName.equalsIgnoreCase("SALARY")) {
-			           bsalary = true;
-			        }
-			 
-			     }
-			 
-			     public void endElement(String uri, String localName,
-			          String qName)
-			          throws SAXException {
-			 
-			          System.out.println("End Element :" + qName);
-			 
-			     }
-			 
-			     public void characters(char ch[], int start, int length)
-			         throws SAXException {
-			 
-			         if (bfname) {
-			            System.out.println("First Name : "
-			                + new String(ch, start, length));
-			            bfname = false;
-			          }
-			 
-			          if (blname) {
-			              System.out.println("Last Name : "
-			                  + new String(ch, start, length));
-			              blname = false;
-			           }
-			 
-			          if (bnname) {
-			              System.out.println("Nick Name : "
-			                  + new String(ch, start, length));
-			              bnname = false;
-			           }
-			 
-			          if (bsalary) {
-			              System.out.println("Salary : "
-			                  + new String(ch, start, length));
-			              bsalary = false;
-			           }
-			 
-			        }
-			 
-			      };
-			 
-			      saxParser.parse(ficheroVenta, handler);
-			 
-			    } catch (Exception e) {
-			      e.printStackTrace();
-			    }
-			  }
+	private Node sacarFecha() {
+		return this.hijos.item(0);
+	}
 
-	@Override
-	public void buildDiaDescuento() {
-		// TODO Auto-generated method stub
-		pedido.setDiaDescuento(diaDescuento);
+	private boolean ficheroVacio() {
+		if(this.hijos.getLength() != 0){
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public void buildAddLinVentas() {
-		// TODO Auto-generated method stub
-		pedido.setLinVentas(linVentas);
+	public ArrayList<String> getLinVenta() {
+		ArrayList<String> linVenta = new ArrayList<String>();
+		//Si hay hijos (documento vacío)
+		if(!ficheroVacio()){
+			if(this.pos < this.hijos.getLength() - 1){
+				//Vamos a ver el nodo actual
+				Node linea = this.hijos.item(pos);
+				//¿Será una línea normal?
+				if(linea.getNamespaceURI().equals("linVenta")){
+					//Si es el caso, sacamos todas las propiedades
+					NamedNodeMap atributos = linea.getAttributes();
+					linVenta.add(atributos.getNamedItem("codProd").toString());
+					linVenta.add(atributos.getNamedItem("cant").toString());
+					this.pos++;
+					
+				} else if(linea.getNamespaceURI().equals("deshacerLinVenta")){
+					//¿Será deshacerLinVenta?
+					linVenta.add("deshacerLinVenta");
+					this.pos++;
+					return linVenta;
+					
+				} else if(linea.getNamespaceURI().equals("cancelarVenta")){
+					this.pos++;
+					//¿Será cancelarVenta?
+					return null;
+				}
+			} else {
+				//Hemos terminado
+				linVenta.add("Hemos");
+				linVenta.add("llegado");
+				linVenta.add("al fin");
+				return linVenta;
+			}
+		} else {
+			return null;
+		}
+		
+		return linVenta;
 	}
-
-	@Override
-	public void buildTarjeta() {
-		// TODO Auto-generated method stub
-		pedido.setTarjeta(tarjeta);
-	}
-
-	@Override
-	public void buildEmpleado() {
-		// TODO Auto-generated method stub
-		pedido.setEmpleado(empleado);
-	}
-
+	
 }
