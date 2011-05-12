@@ -19,5 +19,5 @@
 		<cant>1</cant>
 		<pUnit>8.7</pUnit>
 	</linTicket>
-<totalAPagar> cant="16.0"</totalAPagar>
+	<totalAPagar cant="16.0"/>
 </ticket>
