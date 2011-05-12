@@ -7,7 +7,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 public class Main {
-	
+
 	/**
 	 * Punto de entrada al programa
 	 * @param args
@@ -15,19 +15,18 @@ public class Main {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 */
-	public static void main(String[] args) throws IOException{
+	public static void Main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 		
 		
 		Sistema sistema = new Sistema();
 		
-		sistema.inicializar(new EntradaXML("fichero.xml"));
+		sistema.inicializar("ficheroVenta.xml");
 		
 		CajaRegistradora c = new CajaRegistradora("CAJA1");
 		
 		sistema.crearNuevaVenta(c);
 		
-		
-		
+		sistema.anyadirLinVenta();	
 	}
-	
+
 }
