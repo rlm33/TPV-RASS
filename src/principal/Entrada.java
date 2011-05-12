@@ -3,8 +3,7 @@ package principal;
 import java.util.ArrayList;
 
 /**
- * Se trata de la clase abstracta del constructor Builder de las Entradas. De momento las entradas serán de tipo XML, pero si en un futuro
- * se quisieran hacer de otro tipo HTML, hojas de texto, etc se podría extender el programa añadiendo tan sólo otra clase al sistema de clases.
+ * Se trata de la clase abstracta del constructor de las Entradas.
  * @author RASS
  *
  */
