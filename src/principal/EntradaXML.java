@@ -52,6 +52,13 @@ public class EntradaXML extends Entrada {
 		}
 		return true;
 	}
+	
+	public boolean isFinalFichero(){
+		if(this.pos < this.hijos.getLength() - 1){
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	public ArrayList<String> getLinVenta() {
@@ -78,14 +85,8 @@ public class EntradaXML extends Entrada {
 				} else if(linea.getNamespaceURI().equals("cancelarVenta")){
 					this.pos++;
 					//¿Será cancelarVenta?
-					return null;
+					return linVenta;
 				}
-			} else {
-				//Hemos terminado
-				linVenta.add("Hemos");
-				linVenta.add("llegado");
-				linVenta.add("al fin");
-				return linVenta;
 			}
 		} else {
 			return null;
