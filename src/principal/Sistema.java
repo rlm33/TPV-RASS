@@ -3,6 +3,10 @@ package principal;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 import utilidades.Comando;
 import utilidades.CrearNuevaVenta;
 import utilidades.Propiedades;
@@ -14,7 +18,7 @@ public class Sistema {
 	private Propiedades propiedades;
 	private Entrada entrada;
 	private ArrayList<Comando> comandos;
-	//private Salida salida;
+	private Salida salida;
 	
 	public Sistema()
 	{
@@ -22,18 +26,20 @@ public class Sistema {
 		catalogo = null;
 		propiedades = null;
 		entrada = null;
-		//salida = null;
+		salida = null;
 	}
 	
 	/**
 	 * Este método es el encargado de cargar las propiedades y la lista de catálogos
 	 * @throws IOException Posibles excepciones
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
 	 */
-	public void inicializar(Entrada e/*,Salida s*/) throws IOException{
+	public void inicializar(String s/*,Salida s*/) throws IOException, ParserConfigurationException, SAXException{
 		ventas = new ArrayList<Venta>();
 		propiedades = Propiedades.getInstancia();
 		catalogo = Catalogo.getInstancia();
-		entrada = e;
+		entrada = new EntradaXML(s);
 		
 	}
 	
@@ -90,10 +96,29 @@ public class Sistema {
 	//ESTA FUNCION NO ESTA TERMINADA
 	public boolean anyadirLinVenta() throws IOException
 	{
-		LinVenta lv = null;//entrada.getLinVenta();
+		Venta v = null;
+		ArrayList<String> linea = entrada.getLinVenta();
+		LinVenta lv = null;
 		boolean res=false;
 		
-		if(lv!=null)
+		System.out.println(linea.get(0));
+		
+		if(linea.isEmpty()){
+			//Se cancela la venta entera
+			ventas.clear();
+		} else if(linea.size() == 1){
+			if(ventas.size() >= 1){
+				ventas.remove(ventas.size() - 1);
+			}
+		} else if(linea.size() == 2){
+			Producto p = catalogo.getProducto(linea.get(0));
+			lv = new LinVenta(p, Integer.parseInt(linea.get(1)));
+			v.anyadirLinVenta(lv);
+			ventas.add(v);
+			
+		}
+		
+		/*if(lv!=null)
 			{
 				Venta v = ventas.get(ventas.size()-1);
 			
@@ -103,7 +128,7 @@ public class Sistema {
 					ventas.set(ventas.size()-1,v);
 					res=true;
 					}
-			}
+			}*/
 		
 		 return res;
 		
@@ -112,6 +137,12 @@ public class Sistema {
 	public void cerrarVenta(Venta v)
 	{
 		// TODO calcular descuentos e impuestos
+	}
+	
+	public void crearTicket(Venta v, String fichero) throws IOException{
+		salida = new SalidaXML(fichero);
+		
+		salida.setVenta(v);
 	}
 	
 }
