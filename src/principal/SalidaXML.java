@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class SalidaXML extends Salida{
 	
@@ -21,15 +20,15 @@ public class SalidaXML extends Salida{
 		String xmlCode = "<ticket>" + '\n';
 		if(venta != null){			
 			for(LinVenta v : venta.getLinventas()){
-				String tab = '\t' + '\t' + "";
-				xmlCode += '\t' + "<linTicket>" + '\n';
-				xmlCode += tab + "<descr>" + v.getProducto().getDescripcion() + "</descr>" + '\n';
-				xmlCode += tab + "<cant>" + v.getCantidad() + "</cant>" + '\n';
-				xmlCode += tab + "<pUnit>" + v.getProducto().getPvp() + "</pUnit>" + '\n';
+				String tab = "\t" + "\t";
+				xmlCode += "\t" + "<linTicket>" + "\n";
+				xmlCode += tab + "<descr>" + v.getProducto().getDescripcion() + "</descr>" + "\n";
+				xmlCode += tab + "<cant>" + v.getCantidad() + "</cant>" + "\n";
+				xmlCode += tab + "<pUnit>" + v.getProducto().getPvp() + "</pUnit>" + "\n";
 				//xmlCode += tab + "<dctoLin>" + v.getDescuentoLin() + "</dctoLin>" + '\n';
-				xmlCode += '\t' + "</linTicket>" + '\n';				
+				xmlCode += "\t" + "</linTicket>" + "\n";				
 			}
-			xmlCode += "<totalAPagar> cant=\"" + venta.subtotal() + "\"</totalAPagar>" + '\n';
+			xmlCode += "<totalAPagar> cant=\"" + venta.subtotal() + "\"</totalAPagar>" + "\n";
 			//xmlCode += "<dctoAcumulado> cant=\"" + venta.getDescuentoAcumulado() + "\"</dctoAcumulado>" + '\n';
 			//xmlCode += "<impuestos> cant=\"" + venta.getImpuestos() + "\"</impuestos>" + '\n';
 		}
