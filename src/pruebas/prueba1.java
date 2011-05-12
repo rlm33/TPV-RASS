@@ -2,6 +2,10 @@ package pruebas;
 
 import java.io.IOException;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 import principal.Catalogo;
 import principal.EntradaXML;
 import principal.Sistema;
@@ -11,12 +15,14 @@ public class prueba1 {
 	/**
 	 * @param args
 	 * @throws IOException 
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 		
 		
 		Sistema sistema = new Sistema();
-		sistema.inicializar(new EntradaXML("fichero.xml"));
+		sistema.inicializar("ficheroVenta.xml");
 		
 		//DirectorEntrada de = new DirectorEntrada(new EntradaXML("ficheroVenta.xml"));
 		
