@@ -12,5 +12,13 @@ abstract class Entrada {
 		
 	}
 	
-	public abstract ArrayList<String> getLinVenta();
+	public abstract String getLinVenta();
+	
+	public abstract String getTarjetaFid();
+	
+	public abstract String getEmpleado();
+	
+	public abstract String getDia();
+	
+	public abstract String getHora();
 }
