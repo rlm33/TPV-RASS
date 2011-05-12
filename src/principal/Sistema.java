@@ -94,30 +94,34 @@ public class Sistema {
 	}*/
 	
 	//ESTA FUNCION NO ESTA TERMINADA
+	/**
+	 * No se si es correcto o no, pero supongo que la venta siempre será una, es decir, que se inicializa antes
+	 * de llegar aquí y aquí tan sólo debemos ocuparnos de añadir nuevas líneas a la venta actual, que será
+	 * la última venta, ¿no?
+	 */
 	public boolean anyadirLinVenta() throws IOException
 	{
-		Venta v = null;
-		ArrayList<String> linea = entrada.getLinVenta();
-		LinVenta lv = null;
+		ventas.get(ventas.size() - 1);
+		String linea = entrada.getLinVenta();
 		boolean res=false;
 		
-		System.out.println(linea.get(0));
 		
-		if(linea.isEmpty()){
-			//Se cancela la venta entera
-			ventas.clear();
-		} else if(linea.size() == 1){
-			if(ventas.size() >= 1){
-				ventas.remove(ventas.size() - 1);
+		if(linea == "cancelarVenta"){
+			//Deshacer la última venta
+			ventas.remove(ventas.size() - 1);
+		} else if(linea == "deshacerLinVenta"){
+			//Se deshace la última línea
+			if(ventas.get(ventas.size() - 1).getLinventas().size()>0){
+				ventas.get(ventas.size() - 1).getLinventas().remove(ventas.get(ventas.size() - 1).getLinventas().size() - 1);
 			}
-		} else if(linea.size() == 2){
-			Producto p = catalogo.getProducto(linea.get(0));
-			lv = new LinVenta(p, Integer.parseInt(linea.get(1)));
-			v.anyadirLinVenta(lv);
-			ventas.add(v);
-			
+		} else if(linea.length()>0){
+			//Una línea normal
+			String[] campos = linea.split("&&");
+			if(catalogo.existeProducto(campos[0])){
+				Producto p = catalogo.getProducto(campos[0]);
+				ventas.get(ventas.size() - 1).anyadirLinVenta(new LinVenta(p, Integer.parseInt(campos[1])));
+			}
 		}
-		
 		/*if(lv!=null)
 			{
 				Venta v = ventas.get(ventas.size()-1);
