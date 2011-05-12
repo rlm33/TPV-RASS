@@ -61,8 +61,8 @@ public class EntradaXML extends Entrada {
 	}
 
 	@Override
-	public ArrayList<String> getLinVenta() {
-		ArrayList<String> linVenta = new ArrayList<String>();
+	public String getLinVenta() {
+		String linVenta = "";
 		//Si hay hijos (documento vacío)
 		if(!ficheroVacio()){
 			if(this.pos < this.hijos.getLength() - 1){
@@ -72,27 +72,65 @@ public class EntradaXML extends Entrada {
 				if(linea.getNamespaceURI().equals("linVenta")){
 					//Si es el caso, sacamos todas las propiedades
 					NamedNodeMap atributos = linea.getAttributes();
-					linVenta.add(atributos.getNamedItem("codProd").toString());
-					linVenta.add(atributos.getNamedItem("cant").toString());
-					this.pos++;
+					linVenta+=atributos.getNamedItem("codProd").toString() + "&&";
+					linVenta+=atributos.getNamedItem("cant").toString();
 					
 				} else if(linea.getNamespaceURI().equals("deshacerLinVenta")){
 					//¿Será deshacerLinVenta?
-					linVenta.add("deshacerLinVenta");
-					this.pos++;
-					return linVenta;
+					linVenta+="deshacerLinVenta";
 					
 				} else if(linea.getNamespaceURI().equals("cancelarVenta")){
-					this.pos++;
-					//¿Será cancelarVenta?
-					return linVenta;
+					linVenta+="cancelarVenta";
 				}
 			}
-		} else {
-			return null;
+			this.pos++;
 		}
 		
 		return linVenta;
+	}
+
+	@Override
+	public String getTarjetaFid() {
+		// TODO Auto-generated method stub
+		String resultado = "";
+		if(this.cliente != null){
+			NamedNodeMap atributos = this.cliente.getAttributes();
+			resultado += atributos.getNamedItem("tarjetaFid").toString();
+		}		
+		return resultado;
+	}
+	
+	@Override
+	public String getEmpleado() {
+		// TODO Auto-generated method stub
+		String resultado = "";
+		if(this.cliente != null){
+			NamedNodeMap atributos = this.cliente.getAttributes();
+			resultado += atributos.getNamedItem("empleado").toString();
+		}		
+		return resultado;
+	}
+
+	@Override
+	public String getDia() {
+		// TODO Auto-generated method stub
+		String resultado = "";
+		if(this.fecha != null){
+			NamedNodeMap atributos = this.cliente.getAttributes();
+			resultado += atributos.getNamedItem("dia").toString();
+		}		
+		return resultado;
+	}
+	
+	@Override
+	public String getHora() {
+		// TODO Auto-generated method stub
+		String resultado = "";
+		if(this.fecha != null){
+			NamedNodeMap atributos = this.cliente.getAttributes();
+			resultado += atributos.getNamedItem("hora").toString();
+		}		
+		return resultado;
 	}
 	
 }
