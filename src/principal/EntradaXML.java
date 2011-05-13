@@ -27,15 +27,17 @@ public class EntradaXML extends Entrada {
 
 	public EntradaXML(String fichero) throws ParserConfigurationException, SAXException, IOException{
 		super();
-		 this.builder = factory.newDocumentBuilder();
-		 this.documento = builder.parse(new File(fichero));
-		 this.raiz = documento.getFirstChild();
-		 this.hijos = this.raiz.getChildNodes();
-		 if(this.hijos.getLength() >= 2){
-			 this.fecha = sacarFecha();
-			 this.cliente = sacarCliente();
-		 }
-		 this.pos = 1;
+		this.factory = DocumentBuilderFactory.newInstance( );
+		this.documento = null;
+		this.builder = factory.newDocumentBuilder();
+		this.documento = builder.parse(new File(fichero));
+		this.raiz = documento.getFirstChild();
+		this.hijos = this.raiz.getChildNodes();
+		if(this.hijos.getLength() >= 2){
+		 this.fecha = sacarFecha();
+		 this.cliente = sacarCliente();
+		}
+		this.pos = 1;
 	}
 
 	private Node sacarCliente() {
@@ -53,6 +55,7 @@ public class EntradaXML extends Entrada {
 		return true;
 	}
 	
+	@Override
 	public boolean isFinalFichero(){
 		if(this.pos < this.hijos.getLength() - 1){
 			return false;
