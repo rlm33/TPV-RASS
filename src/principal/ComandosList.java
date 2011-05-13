@@ -2,5 +2,6 @@ package principal;
 
 public enum ComandosList {
 
-	cancelarVenta, deshacerLinVenta, linVenta;
+	cancelarVenta, deshacerLinVenta, linVenta, NULO;
+	
 }
