@@ -1,4 +1,4 @@
-package principal;
+package utilidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,10 +7,11 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import utilidades.Comando;
+import principal.Entrada;
+import principal.EntradaXML;
+
 
 public class ComandoFactory {
-	
 	private Entrada entrada;
 	private ArrayList<Comando> listaComandos;
 	
@@ -31,15 +32,16 @@ public class ComandoFactory {
 			while(!this.entrada.isFinalFichero()){
 				String linea = this.entrada.getLinVenta();
 				if(linea.equals(ComandosList.deshacerLinVenta)){
-					Comando c = new ComandoDeshacerLinVenta();
-					listaComandos.add(c);
+					Comando c = new DeshacerLinVenta();
+					this.listaComandos.add(c);
 					
 				} else if(linea.equals(ComandosList.cancelarVenta)){
-					Comando c = new ComandoCancelarVenta();
-					listaComandos.add(c);
+					Comando c = new CancelarVenta();
+					this.listaComandos.add(c);
 				} else {
-					Comando c = new ComandoCrearLinVenta(linea);
-					listaComando.add(c);
+					String [] parte = linea.split("&&");
+					Comando c = new AnyadirLinVenta(parte[0],Integer.parseInt(parte[1]));
+					this.listaComandos.add(c);
 				}
 			}
 		}

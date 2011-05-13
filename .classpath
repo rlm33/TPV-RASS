@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="C:/Program Files/eclipse/workspace/jersey-client-1.7-ea06-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/eclipse/workspace/jersey-client-1.7-ea06.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/eclipse/workspace/jsr311-api-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/eclipse/workspace/jersey-core-1.7-ea06.jar"/>
+	<classpathentry kind="lib" path="jars/jersey-client-1.7-ea06-javadoc.jar"/>
+	<classpathentry kind="lib" path="jars/jersey-client-1.7-ea06.jar"/>
+	<classpathentry kind="lib" path="jars/jersey-core-1.7-ea06.jar"/>
+	<classpathentry kind="lib" path="jars/jsr311-api-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
