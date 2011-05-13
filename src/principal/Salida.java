@@ -6,10 +6,8 @@ package principal;
  * @author RASS
  *
  */
-public abstract class Salida {
-	public Salida(){
-		
-	}
+public interface Salida {
+
 	
 	public abstract void setVenta(Venta v);
 }

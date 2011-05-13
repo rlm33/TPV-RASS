@@ -7,7 +7,8 @@
 	<linventa>
 		codProd="002924"
 		cant="1000"
-	</linventa>
+	</linventa
+	<deshacerLinVenta/>
 	<linventa>
 		codProd="006037"
 		cant="2"
@@ -16,14 +17,7 @@
 		codProd="002924"
 		cant="1000"
 	</linventa>
-	<linventa>
-		codProd="006037"
-		cant="2"
-	</linventa>
-	<linventa>
-		codProd="002924"
-		cant="1000"
-	</linventa>
+	<cancelarVenta/>
 	<linventa>
 		codProd="006037"
 		cant="2"
