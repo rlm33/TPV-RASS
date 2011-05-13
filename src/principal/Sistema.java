@@ -160,6 +160,7 @@ public class Sistema {
 	public void cerrarVenta(Venta v)
 	{
 		// TODO calcular descuentos e impuestos
+		salida.generarTicket(ventas.get(ventas.size()-1));
 	}
 	
 	/*public void crearTicket(Venta v, String fichero) throws IOException{

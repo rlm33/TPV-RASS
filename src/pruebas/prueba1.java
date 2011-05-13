@@ -7,7 +7,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import principal.Catalogo;
-import principal.EntradaXML;
 import principal.Sistema;
 
 public class prueba1 {
