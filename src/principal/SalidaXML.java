@@ -28,7 +28,7 @@ public class SalidaXML extends Salida{
 				//xmlCode += tab + "<dctoLin>" + v.getDescuentoLin() + "</dctoLin>" + '\n';
 				xmlCode += "\t" + "</linTicket>" + "\n";				
 			}
-			xmlCode += "\t" + "<totalAPagar cant=\"" + venta.subtotal() + "\"/>" + "\n";
+			xmlCode += "\t" + "<totalAPagar>cant=\"" + venta.subtotal() + "</totalAlPagar>" + "\n";
 			//xmlCode += "<dctoAcumulado> cant=\"" + venta.getDescuentoAcumulado() + "\"</dctoAcumulado>" + '\n';
 			//xmlCode += "<impuestos> cant=\"" + venta.getImpuestos() + "\"</impuestos>" + '\n';
 		}
