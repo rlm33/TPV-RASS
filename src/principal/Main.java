@@ -15,7 +15,7 @@ public class Main {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 */
-	public static void Main(String[] args) throws IOException, ParserConfigurationException, SAXException {
+	public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 		
 		
 		Sistema sistema = new Sistema();

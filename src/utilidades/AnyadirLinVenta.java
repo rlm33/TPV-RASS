@@ -1,11 +1,21 @@
 package utilidades;
 
+import principal.Sistema;
+
 public class AnyadirLinVenta implements Comando{
 
+	private String codigo;
+	private int cantidad;
+	
+	public AnyadirLinVenta(String cod,int cant)
+	{
+		codigo=cod;
+		cantidad=cant;
+	}
 	@Override
-	public void ejecutar(Object o) {
+	public void ejecutar() {
 		
-		
+		Sistema.getInstancia().anyadirLinVenta(codigo,cantidad);
 		
 	}
 
