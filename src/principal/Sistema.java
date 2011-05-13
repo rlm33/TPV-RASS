@@ -67,7 +67,7 @@ public class Sistema {
 	
 	public void cancelarVenta()
 	{
-		ventas.set(ventas.size()-1, null);
+		ventas.remove(ventas.size()-1);
 	}
 	
 	private float subtotal(Venta v)
