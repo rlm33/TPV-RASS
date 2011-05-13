@@ -14,7 +14,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class EntradaXML extends Entrada {
+public class EntradaXML implements Entrada {
 	
 	private DocumentBuilderFactory factory;
 	private Document documento;
@@ -26,7 +26,6 @@ public class EntradaXML extends Entrada {
 	private int pos;
 
 	public EntradaXML(String fichero) throws ParserConfigurationException, SAXException, IOException{
-		super();
 		this.factory = DocumentBuilderFactory.newInstance( );
 		this.documento = null;
 		this.builder = factory.newDocumentBuilder();
