@@ -3,14 +3,11 @@ package principal;
 import java.util.ArrayList;
 
 /**
- * Se trata de la clase abstracta del constructor de las Entradas.
+ * Interface que controla los distintos tipos de Entrada
  * @author RASS
  *
  */
-abstract class Entrada {
-	public Entrada(){
-		
-	}
+public interface Entrada {
 	
 	public abstract String getLinVenta();
 	
@@ -21,4 +18,6 @@ abstract class Entrada {
 	public abstract String getDia();
 	
 	public abstract String getHora();
+	
+	public abstract boolean isFinalFichero();
 }
