@@ -10,7 +10,7 @@ import principal.Sistema;
 
 public class pruebaEntrada {
 	
-	public static void Main(String args[])
+	public static void main(String args[])
 	{
 		Sistema s = Sistema.getInstancia();
 		

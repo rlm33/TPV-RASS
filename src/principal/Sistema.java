@@ -42,6 +42,7 @@ public class Sistema {
 	{
 		
 		ventas = new ArrayList<Venta>();
+		comandos = new ArrayList<Comando>();
 		caja = new CajaRegistradora(idCaja);
 		factoria =  new ComandoFactory(ent);
 		salida = new PuenteSalida(sal);
