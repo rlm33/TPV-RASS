@@ -8,7 +8,7 @@ public class PuenteSalida {
 	
 	public PuenteSalida(String nombre) throws IOException
 	{
-		String[] partes = nombre.split(".");
+		String[] partes = nombre.split("[.]");
 		
 		salida = null;
 		
