@@ -16,14 +16,22 @@ public class Venta {
 		this.caja = caja;
 	}
 	
-	/*public void anyadirLinVenta(Producto p,int cantidad)
+	public void anyadirLinVenta(Producto p,int cantidad)
 	{
 		linventas.add(new LinVenta(p,cantidad));
-	}*/
+	}
 	
 	public void anyadirLinVenta(LinVenta lv)
 	{
 		linventas.add(lv);
+	}
+	
+	public void deshacerLinVenta()
+	{
+		if (linventas.size()>0)
+		{
+			linventas.remove(linventas.size()-1);
+		}
 	}
 
 	public Date getFecha() {

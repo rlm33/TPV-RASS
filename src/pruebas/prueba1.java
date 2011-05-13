@@ -21,8 +21,8 @@ public class prueba1 {
 	public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 		
 		
-		Sistema sistema = new Sistema();
-		sistema.inicializar("ficheroVenta.xml");
+		Sistema sistema = Sistema.getInstancia();
+		sistema.inicializar("CAJA1","ficheroVenta.xml","ficheroTicket.xml");
 		
 		//DirectorEntrada de = new DirectorEntrada(new EntradaXML("ficheroVenta.xml"));
 		

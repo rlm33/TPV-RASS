@@ -7,18 +7,16 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import utilidades.Comando;
-import utilidades.Propiedades;
+import utilidades.*;
 
 public class Sistema {
 
 	private static Sistema sistema=null;
 	
 	private ArrayList<Venta> ventas;
-	private Catalogo catalogo;
-	private Propiedades propiedades;
 	private ArrayList<Comando> comandos;
-	private Salida salida;
+	private ComandoFactory factoria;
+	private PuenteSalida salida;
 	private CajaRegistradora caja;
 	
 	
@@ -40,14 +38,13 @@ public class Sistema {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 */
-	public void inicializar(String ent,String sal) throws IOException, ParserConfigurationException, SAXException{
+	public void inicializar(String idCaja,String ent,String sal) throws IOException, ParserConfigurationException, SAXException
+	{
+		
 		ventas = new ArrayList<Venta>();
-		propiedades = Propiedades.getInstancia();
-		catalogo = Catalogo.getInstancia();
-		caja = new CajaRegistradora("CAJA1");
-		//factoria =  new ComandoFactory(ent);
-		
-		
+		caja = new CajaRegistradora(idCaja);
+		factoria =  new ComandoFactory(ent);
+		salida = new PuenteSalida(sal);
 		
 	}
 	
@@ -67,9 +64,14 @@ public class Sistema {
 		return v;
 	}
 	
+	public void cancelarVenta()
+	{
+		ventas.set(ventas.size()-1, null);
+	}
+	
 	private float subtotal(Venta v)
 	{
-		return v.subtotal();
+		return ventas.get(ventas.size()-1).subtotal();
 	}
 	
 	/**
@@ -84,19 +86,26 @@ public class Sistema {
 	 * @return
 	 * @throws IOException
 	 */
-	/*public String anyadirLinVenta(String cod, int cantidad, Venta v) throws IOException
+	public void anyadirLinVenta(String cod, int cantidad) throws IOException
 	{
-		if (catalogo.existeProducto(cod))
+		if (Catalogo.getInstancia().existeProducto(cod))
 		{
-			Producto p = catalogo.getProducto(cod);
+			Producto p = Catalogo.getInstancia().getProducto(cod);
 			LinVenta lv = new LinVenta(p,cantidad);
-			v.anyadirLinVenta(lv);
+			ventas.get(ventas.size()-1).anyadirLinVenta(lv);
 			
-			return p.getDescripcion()+" \n "+subtotal(v);
+			System.out.print(p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1)));
+			//return p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1));
 		}
 		
-		return "ERROR: PRODUCTO NO CATALOGADO";
-	}*/
+		System.out.print("ERROR: PRODUCTO NO CATALOGADO");
+		//return "ERROR: PRODUCTO NO CATALOGADO";
+	}
+	
+	public void deshacerLinVenta()
+	{
+		ventas.get(ventas.size()-1).deshacerLinVenta();
+	}
 	
 	//ESTA FUNCION NO ESTA TERMINADA
 	/**
@@ -104,7 +113,7 @@ public class Sistema {
 	 * de llegar aquí y aquí tan sólo debemos ocuparnos de añadir nuevas líneas a la venta actual, que será
 	 * la última venta, ¿no?
 	 */
-	public boolean anyadirLinVenta() throws IOException
+	/*public boolean anyadirLinVenta() throws IOException
 	{
 		ventas.get(ventas.size() - 1);
 		String linea = entrada.getLinVenta();
@@ -139,19 +148,28 @@ public class Sistema {
 					}
 			}*/
 		
-		 return res;
+		 //return res;
 		
-	}
+	//}
 	
 	public void cerrarVenta(Venta v)
 	{
 		// TODO calcular descuentos e impuestos
 	}
 	
-	public void crearTicket(Venta v, String fichero) throws IOException{
+	/*public void crearTicket(Venta v, String fichero) throws IOException{
 		salida = new SalidaXML(fichero);
 		
 		salida.setVenta(v);
+	}*/
+	
+	public void run()
+	{
+		comandos.addAll(factoria.getComando());
+		for (int i=0; i<comandos.size(); i++)
+		{
+			comandos.get(i).ejecutar();
+		}
 	}
 	
 }
