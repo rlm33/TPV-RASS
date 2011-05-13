@@ -13,7 +13,11 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
+/**
+ * Entrada XML, implementa la interfaz entrada
+ * @author RASS
+ *
+ */
 public class EntradaXML implements Entrada {
 	
 	private DocumentBuilderFactory factory;
