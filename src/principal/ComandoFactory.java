@@ -18,7 +18,7 @@ public class ComandoFactory {
 		this.listaComandos = new ArrayList<Comando>();
 		String[] campos = fichero.split(".");
 		
-		if(campos[1].equals("xml")){
+		if(campos[campos.length-1].equals("xml")){
 			this.entrada = new EntradaXML(fichero);
 		} else {
 			this.entrada = null;
