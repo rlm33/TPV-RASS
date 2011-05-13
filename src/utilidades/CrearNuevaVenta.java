@@ -1,6 +1,5 @@
 package utilidades;
 
-import principal.CajaRegistradora;
 import principal.Sistema;
 
 public class CrearNuevaVenta implements Comando {
