@@ -18,15 +18,7 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 		
 		
-		Sistema sistema = new Sistema();
-		
-		sistema.inicializar("ficheroVenta.xml");
-		
-		CajaRegistradora c = new CajaRegistradora("CAJA1");
-		
-		sistema.crearNuevaVenta(c);
-		
-		sistema.anyadirLinVenta();	
+			
 	}
 
 }
