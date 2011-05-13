@@ -165,8 +165,9 @@ public class Sistema {
 	
 	public void run()
 	{
+		int ultimo = comandos.size(); //Por si hubiesen comandos de antes.
 		comandos.addAll(factoria.getComando());
-		for (int i=0; i<comandos.size(); i++)
+		for (int i=ultimo; i<comandos.size(); i++)
 		{
 			comandos.get(i).ejecutar();
 		}
