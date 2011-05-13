@@ -86,16 +86,21 @@ public class Sistema {
 	 * @return
 	 * @throws IOException
 	 */
-	public void anyadirLinVenta(String cod, int cantidad) throws IOException
+	public void anyadirLinVenta(String cod, int cantidad)
 	{
-		if (Catalogo.getInstancia().existeProducto(cod))
-		{
-			Producto p = Catalogo.getInstancia().getProducto(cod);
-			LinVenta lv = new LinVenta(p,cantidad);
-			ventas.get(ventas.size()-1).anyadirLinVenta(lv);
-			
-			System.out.print(p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1)));
-			//return p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1));
+		try {
+			if (Catalogo.getInstancia().existeProducto(cod))
+			{
+				Producto p = Catalogo.getInstancia().getProducto(cod);
+				LinVenta lv = new LinVenta(p,cantidad);
+				ventas.get(ventas.size()-1).anyadirLinVenta(lv);
+				
+				System.out.print(p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1)));
+				//return p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		System.out.print("ERROR: PRODUCTO NO CATALOGADO");
