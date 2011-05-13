@@ -10,6 +10,7 @@ import org.xml.sax.SAXException;
 import utilidades.Comando;
 
 public class ComandoFactory {
+	
 	private Entrada entrada;
 	private ArrayList<Comando> listaComandos;
 	
