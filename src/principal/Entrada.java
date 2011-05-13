@@ -3,7 +3,7 @@ package principal;
 import java.util.ArrayList;
 
 /**
- * Interface que controla los distintos tipos de Entrada
+ * Interface que controla los distintos tipos de Entrada.
  * @author RASS
  *
  */
