@@ -62,6 +62,7 @@ public class ComandoFactory {
 	
 	public String getHora(){
 		return this.entrada.getHora();
+		
 	}
 	
 	
