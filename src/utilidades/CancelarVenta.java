@@ -1,16 +1,14 @@
 package utilidades;
 
-import principal.CajaRegistradora;
 import principal.Sistema;
 
-public class CrearNuevaVenta implements Comando {
+public class CancelarVenta implements Comando {
 
 	@Override
 	public void ejecutar() {
-
 		
-		Sistema.getInstancia().crearNuevaVenta();
-	
+		Sistema.getInstancia().cancelarVenta();
+		
 	}
 
 	@Override
@@ -19,5 +17,4 @@ public class CrearNuevaVenta implements Comando {
 		
 	}
 
-	
 }

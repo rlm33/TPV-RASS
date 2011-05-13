@@ -8,26 +8,31 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import utilidades.Comando;
-import utilidades.CrearNuevaVenta;
 import utilidades.Propiedades;
 
 public class Sistema {
 
+	private static Sistema sistema=null;
+	
 	private ArrayList<Venta> ventas;
 	private Catalogo catalogo;
 	private Propiedades propiedades;
-	private Entrada entrada;
 	private ArrayList<Comando> comandos;
 	private Salida salida;
+	private CajaRegistradora caja;
 	
-	public Sistema()
+	
+	public static Sistema getInstancia()
 	{
-		ventas = null;
-		catalogo = null;
-		propiedades = null;
-		entrada = null;
-		salida = null;
+		if(sistema==null)
+		{
+			sistema = new Sistema();
+		}
+		
+		return sistema;
 	}
+
+	private Sistema(){}
 	
 	/**
 	 * Este método es el encargado de cargar las propiedades y la lista de catálogos
@@ -35,11 +40,14 @@ public class Sistema {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 */
-	public void inicializar(String s/*,Salida s*/) throws IOException, ParserConfigurationException, SAXException{
+	public void inicializar(String ent,String sal) throws IOException, ParserConfigurationException, SAXException{
 		ventas = new ArrayList<Venta>();
 		propiedades = Propiedades.getInstancia();
 		catalogo = Catalogo.getInstancia();
-		entrada = new EntradaXML(s);
+		caja = new CajaRegistradora("CAJA1");
+		//factoria =  new ComandoFactory(ent);
+		
+		
 		
 	}
 	
@@ -50,13 +58,10 @@ public class Sistema {
 	 * @param c
 	 * @return
 	 */
-	public Venta crearNuevaVenta(CajaRegistradora c)
+	public Venta crearNuevaVenta()
 	{
-		
-		Comando com = new CrearNuevaVenta();
-		com.ejecutar(c);
-		comandos.add(com);
-		Venta v = new Venta(c);
+
+		Venta v = new Venta(caja);
 		ventas.add(v);
 		
 		return v;
