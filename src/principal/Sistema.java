@@ -97,12 +97,12 @@ public class Sistema {
 				LinVenta lv = new LinVenta(p,cantidad);
 				ventas.get(ventas.size()-1).anyadirLinVenta(lv);
 				
-				System.out.print(p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1)));
+				System.out.print("\n"+p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1))+"\n");
 				//return p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1));
 			}
 			else
 			{
-				System.out.print("ERROR: PRODUCTO NO CATALOGADO");
+				System.out.print("\nERROR: PRODUCTO NO CATALOGADO\n");
 				//return "ERROR: PRODUCTO NO CATALOGADO";
 			}
 		} catch (IOException e) {

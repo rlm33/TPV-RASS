@@ -16,29 +16,29 @@ public class pruebaComandos {
 		
 		try {
 			
-			//1
+			//1-Creación con Venta null
 			Sistema s = Sistema.getInstancia();
 			s.inicializar("COMANDANTE", "ficheroVenta.xml", "pruebaComandos.xml");
 			if (s.getLastVenta()==null)
 			{
-				System.out.print("1-TRUE\n");
+				System.out.print("\n1-TRUE\n");
 			}
 			else
 			{
-				System.out.print("1-FALSE\n");
+				System.out.print("\n1-FALSE\n");
 			}
-			//2
+			//2-CrearNuevaVenta
 			Comando c1 = new CrearNuevaVenta();
 			s.run(c1);
 			if (s.getLastVenta()!=null)
 			{
-				System.out.print("2-TRUE\n");
+				System.out.print("\n2-TRUE\n");
 			}
 			else
 			{
-				System.out.print("2-FALSE\n");
+				System.out.print("\n2-FALSE\n");
 			}
-			//3
+			//3-AnyadirLinVenta Producto existe.
 			String cod3 = "001633";
 			Comando c2 = new AnyadirLinVenta(cod3, 2);
 			s.run(c2);
@@ -50,11 +50,35 @@ public class pruebaComandos {
 			}
 			else
 			{
-				System.out.print("3-FALSE\n");
+				System.out.print("\n3-FALSE\n");
 			}
-			
-			
-			System.out.print("FINISH pruebaComandos");
+			//4-AnyadirLinVenta Producto NO existe.
+			String codFalse = "Yonovalgocomocodigo";
+			Comando c3 = new AnyadirLinVenta(codFalse,800);
+			s.run(c3);
+			if (s.getLastVenta().getLinventas().size()==1)
+			{
+				System.out.print("\n4-TRUE\n");
+			}
+			else
+			{
+				System.out.print("\n4-FALSE\n");
+			}
+			//Un par de linventas más.
+			Comando add1 = new AnyadirLinVenta("003057",4);
+			Comando add2 = new AnyadirLinVenta("001668",15);
+			s.run(add1);
+			s.run(add2);
+			if (s.getLastVenta().getLinventas().size()==3)
+			{
+				System.out.print("\nADD-TRUE\n");
+			}
+			else
+			{
+				System.out.print("\nADD-FALSE\n");
+			}
+			//FINISH
+			System.out.print("\nFINISH pruebaComandos");
 			
 			
 		} catch (IOException e) {
