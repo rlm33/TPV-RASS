@@ -3,17 +3,21 @@ package principal;
 import java.util.ArrayList;
 import java.util.Date;
 
+import utilidades.CalculoImpuestos;
+
 public class Venta {
 
 	private Date fecha;
 	private ArrayList<LinVenta> linventas;
 	private CajaRegistradora caja;
+	private float totalImpuestos;
 	
 	public Venta(CajaRegistradora caja)
 	{
-		fecha = new Date();
-		linventas = new ArrayList<LinVenta>();
+		this.fecha = new Date();
+		this.linventas = new ArrayList<LinVenta>();
 		this.caja = caja;
+		this.totalImpuestos = 0.0f;
 	}
 	
 	public void anyadirLinVenta(Producto p,int cantidad)
@@ -71,4 +75,25 @@ public class Venta {
 		
 		return ret;
 	}
+	
+	public float calcularTotalImpuestos(CalculoImpuestos calc)
+	{
+		float impuestos = 0.0f;
+		
+		for (int i=0; i<linventas.size(); i++)
+		{
+			impuestos += linventas.get(i).getCantidad()*
+				calc.calcularImpuestos(linventas.get(i).getProducto().getCodigo())*
+				linventas.get(i).getProducto().getPvp();
+		}
+		
+		this.totalImpuestos = impuestos;
+		return impuestos;
+	}
+	
+	public float getImpuestos()
+	{
+		return this.totalImpuestos;
+	}
+	
 }

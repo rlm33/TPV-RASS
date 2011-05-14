@@ -115,50 +115,6 @@ public class Sistema {
 		ventas.get(ventas.size()-1).deshacerLinVenta();
 	}
 	
-	//ESTA FUNCION NO ESTA TERMINADA
-	/**
-	 * No se si es correcto o no, pero supongo que la venta siempre será una, es decir, que se inicializa antes
-	 * de llegar aquí y aquí tan sólo debemos ocuparnos de añadir nuevas líneas a la venta actual, que será
-	 * la última venta, ¿no?
-	 */
-	/*public boolean anyadirLinVenta() throws IOException
-	{
-		ventas.get(ventas.size() - 1);
-		String linea = entrada.getLinVenta();
-		boolean res=false;
-		
-		
-		if(linea == "cancelarVenta"){
-			//Deshacer la última venta
-			ventas.remove(ventas.size() - 1);
-		} else if(linea == "deshacerLinVenta"){
-			//Se deshace la última línea
-			if(ventas.get(ventas.size() - 1).getLinventas().size()>0){
-				ventas.get(ventas.size() - 1).getLinventas().remove(ventas.get(ventas.size() - 1).getLinventas().size() - 1);
-			}
-		} else if(linea.length()>0){
-			//Una línea normal
-			String[] campos = linea.split("&&");
-			if(catalogo.existeProducto(campos[0])){
-				Producto p = catalogo.getProducto(campos[0]);
-				ventas.get(ventas.size() - 1).anyadirLinVenta(new LinVenta(p, Integer.parseInt(campos[1])));
-			}
-		}
-		/*if(lv!=null)
-			{
-				Venta v = ventas.get(ventas.size()-1);
-			
-				if(catalogo.existeProducto(lv.getProducto().getCodigo()))
-					{
-					v.anyadirLinVenta(lv);
-					ventas.set(ventas.size()-1,v);
-					res=true;
-					}
-			}*/
-		
-		 //return res;
-		
-	//}
 	
 	public Venta getLastVenta()
 	{
@@ -174,15 +130,19 @@ public class Sistema {
 	
 	public void cerrarVenta(Venta v)
 	{
-		// TODO calcular descuentos e impuestos
+		// TODO Descuentos
+		
+		//Impuestos
+		CalculoImpuestos calc = new RESTCalculoImpuestos();
+		getLastVenta().calcularTotalImpuestos(calc);
+		//Salida
 		salida.generarTicket(getLastVenta());
 	}
 	
-	/*public void crearTicket(Venta v, String fichero) throws IOException{
-		salida = new SalidaXML(fichero);
-		
-		salida.setVenta(v);
-	}*/
+	public void crearTicket()
+	{
+		salida.generarTicket(getLastVenta());
+	}
 	
 	public void run()
 	{
