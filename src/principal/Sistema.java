@@ -2,6 +2,8 @@ package principal;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.sql.Date;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -197,6 +199,15 @@ public class Sistema {
 	public void run(Comando c)
 	{
 		c.ejecutar();
+	}
+
+	public void setFechaVenta(String dia, String hora) {
+		// TODO Auto-generated method stub
+		Calendar fecha = Calendar.getInstance();
+		fecha.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dia));
+		fecha.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hora));
+		this.ventas.get(this.ventas.size()-1).setFecha(fecha);
+		
 	}
 	
 }
