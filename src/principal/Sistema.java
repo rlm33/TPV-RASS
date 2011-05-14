@@ -131,12 +131,112 @@ public class Sistema {
 	
 	public void cerrarVenta(Venta v)
 	{
-		// TODO Descuentos
+		int descuentoFinal = 0;
+		//Descuentos
+		try {
+			int dia = Sistema.getInstancia().getLastVenta().getFecha().get(Calendar.DAY_OF_WEEK);
+			int hora = Sistema.getInstancia().getLastVenta().getFecha().get(Calendar.HOUR_OF_DAY);
+			int descFidEmpresa = Integer.parseInt(Propiedades.getProperty("DctoTarjetaFid.porcentaje","5"));
+			int descEmpleado = Integer.parseInt(Propiedades.getProperty("DctoEmpleado.porcentaje","15"));
+			int diaVenta = 0;
+			int porcentajeDia = 0;			
+			int horaInicio = 0;			
+			int horaFin = 0;
+			
+			//ELIMINAR EN EL FUTURO DESARROLLO DEL SOFTWARE
+			//Comprobamos que sean buenos valores
+			if(descFidEmpresa != 5){
+				descFidEmpresa = 5;
+			}
+			if(descEmpleado != 15){
+				descEmpleado = 15;
+			}
+			
+			//Puede ser que dependiendo del día haya un descuento u otro
+			if(!Propiedades.getProperty("DctoLunes.porcentaje").isEmpty()){
+				diaVenta = 2;
+				porcentajeDia = Integer.parseInt(Propiedades.getProperty("DctoLunes.porcentaje"));
+				horaInicio = Integer.parseInt(Propiedades.getProperty("DctoLunes.horaInicio"));
+				horaFin = Integer.parseInt(Propiedades.getProperty("DctoLunes.horaFin"));
+			} else if(!Propiedades.getProperty("DctoMartes.porcentaje").isEmpty()){
+				diaVenta = 3;
+				porcentajeDia = Integer.parseInt(Propiedades.getProperty("DctoMartes.porcentaje"));
+				horaInicio = Integer.parseInt(Propiedades.getProperty("DctoMartes.horaInicio"));
+				horaFin = Integer.parseInt(Propiedades.getProperty("DctoMartes.horaFin"));
+			} else if(!Propiedades.getProperty("DctoMiercoles.porcentaje").isEmpty()){
+				diaVenta = 4;
+				porcentajeDia = Integer.parseInt(Propiedades.getProperty("DctoMiercoles.porcentaje"));
+				horaInicio = Integer.parseInt(Propiedades.getProperty("DctoMiercoles.horaInicio"));
+				horaFin = Integer.parseInt(Propiedades.getProperty("DctoMiercoles.horaFin"));
+				
+				//ELIMINAR EN EL FUTURO DESARROLLO DEL SOFTWARE
+				//Comprobación
+				if(porcentajeDia != 8){
+					porcentajeDia = 8;
+				}
+				if(horaInicio != 10){
+					horaInicio = 10;
+				}
+				if(horaFin != 12){
+					horaFin = 12;
+				}
+				
+			} else if(!Propiedades.getProperty("DctoJueves.porcentaje").isEmpty()){
+				diaVenta = 5;
+				porcentajeDia = Integer.parseInt(Propiedades.getProperty("DctoJueves.porcentaje"));
+				horaInicio = Integer.parseInt(Propiedades.getProperty("DctoJueves.horaInicio"));
+				horaFin = Integer.parseInt(Propiedades.getProperty("DctoJueves.horaFin"));
+			} else if(!Propiedades.getProperty("DctoViernes.porcentaje").isEmpty()){
+				diaVenta = 6;
+				porcentajeDia = Integer.parseInt(Propiedades.getProperty("DctoViernes.porcentaje"));
+				horaInicio = Integer.parseInt(Propiedades.getProperty("DctoViernes.horaInicio"));
+				horaFin = Integer.parseInt(Propiedades.getProperty("DctoViernes.horaFin"));
+			} else if(!Propiedades.getProperty("DctoSabado.porcentaje").isEmpty()){
+				diaVenta = 7;
+				porcentajeDia = Integer.parseInt(Propiedades.getProperty("DctoSabado.porcentaje"));
+				horaInicio = Integer.parseInt(Propiedades.getProperty("DctoSabado.horaInicio"));
+				horaFin = Integer.parseInt(Propiedades.getProperty("DctoSabado.horaFin"));
+			} else if(!Propiedades.getProperty("DctoDomingo.porcentaje").isEmpty()){
+				diaVenta = 1;
+				porcentajeDia = Integer.parseInt(Propiedades.getProperty("DctoDomingo.porcentaje"));
+				horaInicio = Integer.parseInt(Propiedades.getProperty("DctoDomingo.horaInicio"));
+				horaFin = Integer.parseInt(Propiedades.getProperty("DctoDomingo.horaFin"));
+			}
+			
+			//¿Los impuestos son acumulables?
+			if(Propiedades.getProperty("DescuentosAplicables.politicaAplicacion") == "NO_ACUMULABLE"){
+				if(!this.factoria.getEmpleado()){
+					descuentoFinal = descEmpleado;
+				} else if(!this.factoria.getTarjetaFid()){
+					if(descuentoFinal < descFidEmpresa){
+						descuentoFinal = descFidEmpresa;
+					}
+				} else if(diaVenta == dia && hora >= horaInicio && hora <= horaFin){
+					if(descuentoFinal < porcentajeDia){
+						descuentoFinal = porcentajeDia;
+					}					
+				}
+			} else {
+				if(!this.factoria.getEmpleado()){
+					descuentoFinal += descEmpleado;
+				}
+				if(!this.factoria.getTarjetaFid()){
+					descuentoFinal += descFidEmpresa;
+				}
+				if(diaVenta == dia && hora >= horaInicio && hora <= horaFin){
+					descuentoFinal += porcentajeDia;
+				}
+			}
+		} catch(IOException e){
+			System.out.println(e);
+		}
 		
 		//Impuestos
 		CalculoImpuestos calc = new RESTCalculoImpuestos();
 		getLastVenta().calcularTotalImpuestos(calc);
+		
 		//Salida
+		getLastVenta().setDescuentoAcumulado(descuentoFinal);
 		salida.generarTicket(getLastVenta());
 	}
 	

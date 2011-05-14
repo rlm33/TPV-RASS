@@ -1,6 +1,7 @@
 package principal;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import utilidades.Propiedades;
 
@@ -15,7 +16,6 @@ public class Empleado extends Descuento {
 	{
 		try {
 			descuento = Integer.valueOf(Propiedades.getProperty("DctoEmpleado.porcentaje","0"));
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

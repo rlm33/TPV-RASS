@@ -9,9 +9,9 @@ public interface Entrada {
 	
 	public abstract String getLinVenta();
 	
-	public abstract String getTarjetaFid();
+	public abstract boolean getTarjetaFid();
 	
-	public abstract String getEmpleado();
+	public abstract boolean getEmpleado();
 	
 	public abstract String getDia();
 	

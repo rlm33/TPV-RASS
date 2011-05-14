@@ -10,6 +10,7 @@ public class Venta {
 	private Calendar fecha;
 	private ArrayList<LinVenta> linventas;
 	private CajaRegistradora caja;
+	private int descuentoAcumulado;
 	private float totalImpuestos;
 
 	public Venta(CajaRegistradora caja)
@@ -93,6 +94,14 @@ public class Venta {
 	public float getImpuestos()
 	{
 		return this.totalImpuestos;
+	}
+	
+	public void setDescuentoAcumulado(int desc){
+		this.descuentoAcumulado = desc;
+	}
+	
+	public int getDescuentoAcumulado(){
+		return this.descuentoAcumulado;
 	}
 	
 }

@@ -51,11 +51,11 @@ public class ComandoFactory {
 	/*
 	 * Estos métodos hacen falta, pero no se si esto está bien aquí o no
 	 */
-	public String getTarjetaFid(){
+	public boolean getTarjetaFid(){
 		return this.entrada.getTarjetaFid();
 	}
 	
-	public String getEmpleado(){
+	public boolean getEmpleado(){
 		return this.entrada.getEmpleado();
 	}
 	

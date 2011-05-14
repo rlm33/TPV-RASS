@@ -113,25 +113,31 @@ public class EntradaXML implements Entrada {
 	 */
 	
 	@Override
-	public String getTarjetaFid() {
+	public boolean getTarjetaFid() {
 		// TODO Auto-generated method stub
 		String resultado = "";
 		if(this.cliente != null){
 			NamedNodeMap atributos = this.cliente.getAttributes();
 			resultado += atributos.getNamedItem("tarjetaFid").toString();
 		}		
-		return resultado;
+		if(resultado == "true"){
+			return true;
+		}
+		return false;
 	}
 	
 	@Override
-	public String getEmpleado() {
+	public boolean getEmpleado() {
 		// TODO Auto-generated method stub
 		String resultado = "";
 		if(this.cliente != null){
 			NamedNodeMap atributos = this.cliente.getAttributes();
 			resultado += atributos.getNamedItem("empleado").toString();
 		}		
-		return resultado;
+		if(resultado == "true"){
+			return true;
+		}
+		return false;
 	}
 
 	@Override

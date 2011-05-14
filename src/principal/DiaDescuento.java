@@ -1,6 +1,7 @@
 package principal;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import utilidades.Propiedades;
 
@@ -74,16 +75,9 @@ public class DiaDescuento extends Descuento {
 	@Override
 	public float aplicarDescuento(float desc)
 	{
-		//Properties p = Propiedades.getInstancia().getPropiedades();
-		try {
-			Propiedades.getProperty("dtoMiercoles");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// TODO Mirar si estamos en dia y hora de descuento
-		//if(this.dia.equals())
 		return desc;
 	}
-
 }
+		
+	
+
