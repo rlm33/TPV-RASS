@@ -13,7 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 /**
- * Entrada XML, implementa la interfaz entrada
+ * Entrada XML, implementa la interfaz entrada siendo el archivo de entrada .xml
  * @author RASS
  *
  */
@@ -42,6 +42,10 @@ public class EntradaXML implements Entrada {
 		this.pos = 1;
 	}
 
+	/**
+	 * Métodos internos que nos permiten sacar de los hijos el cliente y la fecha
+	 */
+	
 	private Node sacarCliente() {
 		return this.hijos.item(this.hijos.getLength() - 1);
 	}
@@ -57,6 +61,10 @@ public class EntradaXML implements Entrada {
 		return true;
 	}
 	
+	/**
+	 * Nos dice si hemos llegado ya al final de las lecturas o todavía no
+	 * @return Booleano a true si hemos llegado y a false en otro caso
+	 */
 	@Override
 	public boolean isFinalFichero(){
 		if(this.pos < this.hijos.getLength() - 1){
@@ -65,6 +73,10 @@ public class EntradaXML implements Entrada {
 		return true;
 	}
 
+	/**
+	 * getLinVenta nos devuelve la línea de venta que estamos leyendo
+	 * @return String que contendrá la información necesaria para realizar los comandos
+	 */
 	@Override
 	public String getLinVenta() {
 		String linVenta = "";
@@ -94,6 +106,12 @@ public class EntradaXML implements Entrada {
 		return linVenta;
 	}
 
+	/*
+	 * GETTERS
+	 * Nos devuelven otros valores que obtenemos de la Entrada, como es la tarjeta de fidelidad, si es empleado,
+	 * el día y la hora
+	 */
+	
 	@Override
 	public String getTarjetaFid() {
 		// TODO Auto-generated method stub

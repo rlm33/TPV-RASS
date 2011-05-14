@@ -6,8 +6,8 @@ package principal;
  * Esta clase implementa un descuento segun la ubicacion temporal que contiene un dia de la semana y un horario.
  * @author RASS
  *
- * He optado por quitar el array de dias y cada Descuento de un dia diferente contarlo como otro objeto de tipo
- * DiaDescuento. De este modo si queremos que haya descuento los lunes de 10 a 12 y los martes de 9 a 11 simplemente
+ * Cada Descuento de un dia diferente contarlo como otro objeto de tipo DiaDescuento.
+ * De este modo si queremos que haya descuento los lunes de 10 a 12 y los martes de 9 a 11 simplemente
  * meteremos dos DiaDescuento en el array.
  */
 public class DiaDescuento extends Descuento {
@@ -71,7 +71,7 @@ public class DiaDescuento extends Descuento {
 	public float aplicarDescuento(float desc)
 	{
 		// TODO Mirar si estamos en dia y hora de descuento
-		
+		//if(this.dia.)
 		return desc;
 	}
 	
