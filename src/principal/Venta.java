@@ -1,20 +1,20 @@
 package principal;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 import utilidades.CalculoImpuestos;
 
 public class Venta {
 
-	private Date fecha;
+	private Calendar fecha;
 	private ArrayList<LinVenta> linventas;
 	private CajaRegistradora caja;
 	private float totalImpuestos;
 
 	public Venta(CajaRegistradora caja)
 	{
-		fecha = new Date();
+		fecha = Calendar.getInstance();
 		linventas = new ArrayList<LinVenta>();
 		this.caja = caja;
 	}
@@ -37,11 +37,11 @@ public class Venta {
 		}
 	}
 
-	public Date getFecha() {
+	public Calendar getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
 	}
 
