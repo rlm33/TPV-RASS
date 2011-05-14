@@ -4,6 +4,11 @@ import java.io.IOException;
 
 import utilidades.Propiedades;
 
+/**
+ * Esta clase nos permite inicializar a los empleados, a partir de las propiedades
+ * @author RASS
+ *
+ */
 public class Empleado extends Descuento {
 
 	public Empleado()
