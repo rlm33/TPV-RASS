@@ -1,5 +1,9 @@
 package principal;
 
+import java.util.Properties;
+
+import utilidades.Propiedades;
+
 
 
 /**
@@ -70,8 +74,10 @@ public class DiaDescuento extends Descuento {
 	@Override
 	public float aplicarDescuento(float desc)
 	{
+		Properties p = Propiedades.getInstancia().getPropiedades();
+		p.getProperty("dtoMiercoles");
 		// TODO Mirar si estamos en dia y hora de descuento
-		if(this.dia.)
+		if(this.dia.equals())
 		return desc;
 	}
 	
