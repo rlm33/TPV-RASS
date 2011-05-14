@@ -1,7 +1,6 @@
 package principal;
 
 import java.io.IOException;
-import java.util.Properties;
 
 import utilidades.Propiedades;
 
