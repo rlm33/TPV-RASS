@@ -99,13 +99,15 @@ public class Sistema {
 				System.out.print(p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1)));
 				//return p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1));
 			}
+			else
+			{
+				System.out.print("ERROR: PRODUCTO NO CATALOGADO");
+				//return "ERROR: PRODUCTO NO CATALOGADO";
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.print("ERROR: PRODUCTO NO CATALOGADO");
-		//return "ERROR: PRODUCTO NO CATALOGADO";
 	}
 	
 	public void deshacerLinVenta()
@@ -158,10 +160,22 @@ public class Sistema {
 		
 	//}
 	
+	public Venta getLastVenta()
+	{
+		if (ventas.size()>0)
+		{
+			return ventas.get(ventas.size()-1);
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
 	public void cerrarVenta(Venta v)
 	{
 		// TODO calcular descuentos e impuestos
-		salida.generarTicket(ventas.get(ventas.size()-1));
+		salida.generarTicket(getLastVenta());
 	}
 	
 	/*public void crearTicket(Venta v, String fichero) throws IOException{
@@ -178,6 +192,11 @@ public class Sistema {
 		{
 			comandos.get(i).ejecutar();
 		}
+	}
+	
+	public void run(Comando c)
+	{
+		c.ejecutar();
 	}
 	
 }
