@@ -30,11 +30,11 @@ public class ComandoFactory {
 		if(entrada != null){
 			while(!entrada.isFinalFichero()){
 				String linea = entrada.getLinVenta();
-				if(linea.equals(ComandosList.deshacerLinVenta)){
+				if(linea.equals("deshacerLinVenta")){
 					Comando c = new DeshacerLinVenta();
 					this.listaComandos.add(c);
 					
-				} else if(linea.equals(ComandosList.cancelarVenta)){
+				} else if(linea.equals("cancelarVenta")){
 					Comando c = new CancelarVenta();
 					this.listaComandos.add(c);
 				} else {
