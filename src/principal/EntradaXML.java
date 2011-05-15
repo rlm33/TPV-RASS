@@ -1,16 +1,20 @@
 package principal;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.xerces.parsers.DOMParser;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 /**
  * Entrada XML, implementa la interfaz entrada siendo el archivo de entrada .xml
@@ -19,27 +23,29 @@ import org.xml.sax.SAXException;
  */
 public class EntradaXML implements Entrada {
 	
-	private DocumentBuilderFactory factory;
 	private Document documento;
-	private DocumentBuilder builder;
-	private Node raiz;
+	private Element raiz;
 	private NodeList hijos;
 	private Node fecha;
 	private Node cliente;
 	private int pos;
 
 	public EntradaXML(String fichero) throws ParserConfigurationException, SAXException, IOException{
-		this.factory = DocumentBuilderFactory.newInstance( );
-		this.documento = null;
-		this.builder = factory.newDocumentBuilder();
-		this.documento = builder.parse(new File(fichero));
-		this.raiz = documento.getFirstChild();
-		this.hijos = this.raiz.getChildNodes();
-		if(this.hijos.getLength() >= 2){
+		// Creamos el parseador  
+		DOMParser parser = new DOMParser();  
+		// Procesamos el fichero XML  
+		parser.parse(new InputSource(new FileInputStream(fichero)));  
+		// Obtenemos el objeto Document  
+		documento = null;
+		documento = parser.getDocument();		
+		//RAIZ
+		raiz = documento.getDocumentElement();
+		hijos = raiz.getChildNodes();		
+		if(this.hijos.getLength() >= 1){
 		 this.fecha = sacarFecha();
 		 this.cliente = sacarCliente();
 		}
-		this.pos = 1;
+		this.pos = 4;
 	}
 
 	/**
@@ -47,20 +53,23 @@ public class EntradaXML implements Entrada {
 	 */
 	
 	private Node sacarCliente() {
-		return this.hijos.item(this.hijos.getLength() - 1);
+		for(int i = 0; i < hijos.getLength(); i++){
+			if(hijos.item(i).getLocalName() == "cliente"){
+				return hijos.item(i);
+			}
+		}
+		return null;
 	}
 
 	private Node sacarFecha() {
-		return this.hijos.item(0);
+		for(int i = 0; i < hijos.getLength(); i++){
+			if(hijos.item(i).getLocalName() == "fecha"){
+				return hijos.item(i);
+			}
+		}
+		return null;
 	}
 
-	private boolean ficheroVacio() {
-		if(this.hijos.getLength() != 0){
-			return false;
-		}
-		return true;
-	}
-	
 	/**
 	 * Nos dice si hemos llegado ya al final de las lecturas o todavía no
 	 * @return Booleano a true si hemos llegado y a false en otro caso
@@ -81,28 +90,25 @@ public class EntradaXML implements Entrada {
 	public String getLinVenta() {
 		String linVenta = "";
 		//Si hay hijos (documento vacío)
-		if(!ficheroVacio()){
-			if(this.pos < this.hijos.getLength() - 1){
-				//Vamos a ver el nodo actual
-				Node linea = this.hijos.item(pos);
-				//¿Será una línea normal?
-				if(linea.getNamespaceURI().equals("linVenta")){
-					//Si es el caso, sacamos todas las propiedades
-					NamedNodeMap atributos = linea.getAttributes();
-					linVenta+=atributos.getNamedItem("codProd").toString() + "&&";
-					linVenta+=atributos.getNamedItem("cant").toString();
-					
-				} else if(linea.getNamespaceURI().equals("deshacerLinVenta")){
-					//¿Será deshacerLinVenta?
-					linVenta+="deshacerLinVenta";
-					
-				} else if(linea.getNamespaceURI().equals("cancelarVenta")){
-					linVenta+="cancelarVenta";
+		if(!isFinalFichero()){
+			
+			//Vamos a ver el nodo actual
+			Node linea = this.hijos.item(pos-1);
+			//¿Será una línea normal?
+			if(linea.getLocalName() == "linventa"){
+				//Si es el caso, sacamos todas las propiedades
+				linVenta = linea.getAttributes().item(0).getNodeValue() + "&&" + linea.getAttributes().item(1).getNodeValue();
+				//NamedNodeMap atributos = linea.getAttributes();
+				//linVenta+=atributos.getNamedItem("codProd").toString() + "&&";
+				//linVenta+=atributos.getNamedItem("cant").toString();
+			} else if(linea.getLocalName() == "deshacerLinVenta"){
+				//¿Será deshacerLinVenta?
+				linVenta+="deshacerLinVenta";
+			} else if(linea.getLocalName() == "cancelarVenta"){
+				linVenta+="cancelarVenta";
 				}
-			}
-			this.pos++;
-		}
-		
+			pos += 2;
+			}		
 		return linVenta;
 	}
 
