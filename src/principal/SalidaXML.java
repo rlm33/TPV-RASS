@@ -29,7 +29,7 @@ public class SalidaXML implements Salida{
 				xmlCode += "\t" + "</linTicket>" + "\n";				
 			}
 			xmlCode += "\t<totalAPagar cant=\"" + venta.subtotal() + "\"/>\n";
-			xmlCode += "\t<dctoAcumulado cant=\"" + venta.getDescuentoAcumulado() + "\"/>\n";
+			xmlCode += "\t<dctoAcumulado cant=\"" + venta.getDescuentoAcumulado()*venta.subtotal()/100 + "\"/>\n";
 			xmlCode += "\t<impuestos>cant=\"" + venta.getImpuestos() + "\"/>\n";
 		}
 		

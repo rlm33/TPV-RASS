@@ -17,7 +17,7 @@
 		<pUnit>15.01</pUnit>
 		<dctoLin>-60.04</dctoLin>
 	</linTicket>
-	<totalAPagar cant="-240.16"/>
-	<dctoAcumulado cant="5"/>
-	<impuestos>cant="0.0"/>
+	<totalAPagar cant="60.04"/>
+	<dctoAcumulado cant="3.002"/>
+	<impuestos>cant="-60.04"/>
 </ticket>
