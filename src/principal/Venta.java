@@ -9,6 +9,11 @@ import java.util.Calendar;
 import utilidades.CalculoImpuestos;
 import utilidades.Propiedades;
 
+/**
+ * Clase de la ventas
+ * @author RASS
+ *
+ */
 public class Venta {
 
 	private Calendar fecha;
