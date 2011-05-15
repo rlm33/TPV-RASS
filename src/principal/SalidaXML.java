@@ -25,7 +25,7 @@ public class SalidaXML implements Salida{
 				xmlCode += tab + "<descr>" + v.getProducto().getDescripcion() + "</descr>\n";
 				xmlCode += tab + "<cant>" + v.getCantidad() + "</cant>\n";
 				xmlCode += tab + "<pUnit>" + v.getProducto().getPvp() + "</pUnit>\n";
-				xmlCode += tab + "<dctoLin>" + venta.getDescuentoLin(v.getProducto().getPvp()) + "</dctoLin>\n";
+				xmlCode += tab + "<dctoLin>" + venta.getDescuentoLin(v.getProducto().getPvp())*v.getCantidad() + "</dctoLin>\n";
 				xmlCode += "\t" + "</linTicket>" + "\n";				
 			}
 			xmlCode += "\t<totalAPagar cant=\"" + venta.subtotal() + "\"/>\n";
