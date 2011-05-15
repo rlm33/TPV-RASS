@@ -1,8 +1,6 @@
 package principal;
 
 import java.io.IOException;
-import java.util.Enumeration;
-
 import utilidades.Propiedades;
 
 /**

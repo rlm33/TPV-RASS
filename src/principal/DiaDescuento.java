@@ -1,12 +1,5 @@
 package principal;
 
-import java.io.IOException;
-import java.util.Calendar;
-
-import utilidades.Propiedades;
-
-
-
 /**
  * Esta clase implementa un descuento segun la ubicacion temporal que contiene un dia de la semana y un horario.
  * @author RASS
