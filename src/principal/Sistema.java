@@ -97,7 +97,7 @@ public class Sistema {
 				LinVenta lv = new LinVenta(p,cantidad);
 				ventas.get(ventas.size()-1).anyadirLinVenta(lv);
 				
-				System.out.print("\n"+p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1))+"\n");
+				System.out.print("\n"+p.getDescripcion()+" \n SUBTOTAL: "+subtotal(ventas.get(ventas.size()-1))+"\n");
 				//return p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1));
 			}
 			else
@@ -148,7 +148,7 @@ public class Sistema {
 			}
 			if(factoria.getTarjetaFid())
 			{
-				descuentos.add(new Tarjeta());System.out.print("TRUE");
+				descuentos.add(new Tarjeta());
 			}
 			
 			
@@ -297,7 +297,7 @@ public class Sistema {
 		getLastVenta().setDescuentoAcumulado(getLastVenta().obtenerDescuento());
 		
 		
-		//PROBANDO
+		/*/PROBANDO
 		System.out.print("\nPROBANDO\n");
 		System.out.print("DctoAcumulado "+getLastVenta().getDescuentoAcumulado());
 		System.out.print("\nDctoLin "+getLastVenta().getDescuentoLin(10));
