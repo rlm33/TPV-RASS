@@ -23,7 +23,7 @@ public class Main {
 			
 			s.inicializar("CAJA1", args[0], args[1]);
 			s.run();
-			s.crearTicket();
+			//s.crearTicket(); //Innecesario.
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
