@@ -20,7 +20,6 @@ public class Main {
 		Sistema s = Sistema.getInstancia();
 		
 		try {
-			
 			s.inicializar("CAJA1", args[0], args[1]);
 			s.run();
 			//s.crearTicket(); //Innecesario.
