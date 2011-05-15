@@ -1,5 +1,7 @@
 package principal;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -18,6 +20,8 @@ public class Venta {
 		fecha = Calendar.getInstance();
 		linventas = new ArrayList<LinVenta>();
 		this.caja = caja;
+		this.descuentoAcumulado = 0;
+		this.totalImpuestos = 0;
 	}
 
 	public void anyadirLinVenta(Producto p,int cantidad)
@@ -72,8 +76,11 @@ public class Venta {
 		{
 			ret += linventas.get(i).subtotal();
 		}
-
-		return ret;
+		//Aplicamos el descuento acumulado al resultado final y aplicamos el redondeo
+		ret = ret - (ret * this.descuentoAcumulado);
+	    BigDecimal big = new BigDecimal(ret);
+	    big = big.setScale(2, RoundingMode.HALF_UP);
+		return big.floatValue();
 	}
 	
 	public float calcularTotalImpuestos(CalculoImpuestos calc)
