@@ -18,7 +18,6 @@ public class ComandoFactory {
 	public ComandoFactory(String fichero) throws ParserConfigurationException, SAXException, IOException{
 		this.listaComandos = new ArrayList<Comando>();
 		String[] campos = fichero.split("[.]");
-		//System.out.print("SALIDA: "+campos[0]+"\n"+campos[1]+"\n");
 		if(campos[campos.length-1].equals("xml")){
 			this.entrada = new EntradaXML(fichero);
 		} else {
@@ -29,7 +28,6 @@ public class ComandoFactory {
 	public ArrayList<Comando> getComando(){
 		if(entrada != null){
 			while(!entrada.isFinalFichero()){
-				System.out.println("Leo la línea del fichero");
 				String linea = entrada.getLinVenta();
 				if(linea.equals(ComandosList.deshacerLinVenta)){
 					Comando c = new DeshacerLinVenta();
