@@ -1,11 +1,13 @@
 package principal;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import utilidades.CalculoImpuestos;
+import utilidades.Propiedades;
 
 public class Venta {
 
@@ -14,6 +16,7 @@ public class Venta {
 	private CajaRegistradora caja;
 	private int descuentoAcumulado;
 	private float totalImpuestos;
+	private ArrayList<Descuento> descuentos;
 
 	public Venta(CajaRegistradora caja)
 	{
@@ -22,6 +25,49 @@ public class Venta {
 		this.caja = caja;
 		this.descuentoAcumulado = 0;
 		this.totalImpuestos = 0;
+		descuentos = new ArrayList<Descuento>();
+		
+	}
+	
+	public void setDescuentos(ArrayList<Descuento> d)
+	{
+		descuentos = d;
+	}
+	
+	public int obtenerDescuento()
+	{
+		int RES = 0;
+		
+		try {
+			String politica= Propiedades.getProperty("PoliticaDctos.tipo");
+			
+			if(politica == "NO_ACUMULABLE")
+			{
+				int mayor = 0;
+				for(int i=0;i<descuentos.size();i++)
+				{
+					if(descuentos.get(i).getDescuento()>mayor)
+					{
+						mayor = descuentos.get(i).getDescuento();
+					}
+				}
+				
+				RES=mayor;
+			}
+			else
+			{
+				int suma = 0;
+				for(int i=0;i<descuentos.size();i++)
+				{
+						suma = descuentos.get(i).getDescuento();
+				}
+				
+				RES = Math.min(100,suma);
+			}
+		}catch(Exception e){e.printStackTrace();}
+		
+		return RES;
+		
 	}
 
 	public void anyadirLinVenta(Producto p,int cantidad)

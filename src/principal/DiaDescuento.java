@@ -1,5 +1,7 @@
 package principal;
 
+import utilidades.Propiedades;
+
 /**
  * Esta clase implementa un descuento segun la ubicacion temporal que contiene un dia de la semana y un horario.
  * @author RASS
@@ -19,12 +21,15 @@ public class DiaDescuento extends Descuento {
 	 * CONSTRUCTORES
 	 */
 	public DiaDescuento(){
+		
+		descuento = 0;
 		this.dia = DiaSemana.NULO;
 		this.horaInicio = -1;
 		this.horaFin = -1;
 	}
 
-	public DiaDescuento(DiaSemana dia, int horaInicio, int horaFin) {
+	public DiaDescuento(int des,DiaSemana dia, int horaInicio, int horaFin) {
+		descuento =des;
 		this.dia = dia;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
