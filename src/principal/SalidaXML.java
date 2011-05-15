@@ -28,7 +28,7 @@ public class SalidaXML implements Salida{
 				xmlCode += tab + "<cant>" + v.getCantidad() + "</cant>\n";
 				xmlCode += tab + "<pUnit>" + df.format(v.getProducto().getPvp()) + "</pUnit>\n";
 				xmlCode += tab + "<dctoLin>" + df.format(venta.getDescuentoLin(v.getProducto().getPvp())*v.getCantidad()) + "</dctoLin>\n";
-				xmlCode += "\t" + "</linTicket>" + "\n";				
+				xmlCode += "\t</linTicket>\n";				
 			}
 			xmlCode += "\t<totalAPagar cant=\"" + df.format(venta.subtotal()) + "\"/>\n";
 			xmlCode += "\t<dctoAcumulado cant=\"" + df.format(venta.getDescuentoAcumulado()*venta.subtotal()/100) + "\"/>\n";
