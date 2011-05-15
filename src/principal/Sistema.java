@@ -97,7 +97,7 @@ public class Sistema {
 				LinVenta lv = new LinVenta(p,cantidad);
 				ventas.get(ventas.size()-1).anyadirLinVenta(lv);
 				
-				System.out.print("\n"+p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1))+"\n");
+				//System.out.print("\n"+p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1))+"\n");
 				//return p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1));
 			}
 			else
@@ -309,7 +309,6 @@ public class Sistema {
 		this.comandos.addAll(this.factoria.getComando());
 		for (int i=ultimo; i<comandos.size(); i++)
 		{
-			System.out.println(comandos.get(i).getClass().getSimpleName());
 			comandos.get(i).ejecutar();
 		}
 	}
