@@ -97,7 +97,7 @@ public class Sistema {
 				LinVenta lv = new LinVenta(p,cantidad);
 				ventas.get(ventas.size()-1).anyadirLinVenta(lv);
 				
-				System.out.print("\n"+p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1))+"\n");
+				//System.out.print("\n"+p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1))+"\n");
 				//return p.getDescripcion()+" \n "+subtotal(ventas.get(ventas.size()-1));
 			}
 			else
@@ -298,10 +298,10 @@ public class Sistema {
 		
 		
 		//PROBANDO
-		System.out.print("\nPROBANDO\n");
-		System.out.print("DctoAcumulado "+getLastVenta().getDescuentoAcumulado());
-		System.out.print("\nDctoLin "+getLastVenta().getDescuentoLin(10));
-		System.out.print("\nFIN_PROBANDO\n");
+		//System.out.print("\nPROBANDO\n");
+		//System.out.print("DctoAcumulado "+getLastVenta().getDescuentoAcumulado());
+		//System.out.print("\nDctoLin "+getLastVenta().getDescuentoLin(10));
+		//System.out.print("\nFIN_PROBANDO\n");
 		//FIN_PROBANDO*/
 		
 		this.crearTicket();
