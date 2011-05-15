@@ -37,7 +37,7 @@ public class ComandoFactory {
 					Comando c = new CancelarVenta();
 					this.listaComandos.add(c);
 				} else {
-					String [] parte = linea.split("&&");
+					String [] parte = linea.split("[&][&]"); //System.out.print("CrearComandoLinVenta: "+parte[0]);
 					Comando c = new AnyadirLinVenta(parte[0],Integer.parseInt(parte[1]));
 					this.listaComandos.add(c);
 				}
@@ -51,7 +51,7 @@ public class ComandoFactory {
 	}
 	
 	/*
-	 * Estos métodos hacen falta, pero no se si esto está bien aquí o no
+	 * Estos mï¿½todos hacen falta, pero no se si esto estï¿½ bien aquï¿½ o no
 	 */
 	public boolean getTarjetaFid(){
 		return this.entrada.getTarjetaFid();

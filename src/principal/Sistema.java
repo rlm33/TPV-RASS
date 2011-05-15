@@ -129,7 +129,7 @@ public class Sistema {
 		}
 	}
 	
-	public void cerrarVenta(Venta v)
+	public void cerrarVenta()
 	{
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 
@@ -311,6 +311,7 @@ public class Sistema {
 		{
 			comandos.get(i).ejecutar();
 		}
+		this.cerrarVenta();
 	}
 	
 	public void run(Comando c)

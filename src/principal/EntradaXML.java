@@ -49,7 +49,7 @@ public class EntradaXML implements Entrada {
 	}
 
 	/**
-	 * Métodos internos que nos permiten sacar de los hijos el cliente y la fecha
+	 * Mï¿½todos internos que nos permiten sacar de los hijos el cliente y la fecha
 	 */
 	
 	private Node sacarCliente() {
@@ -71,7 +71,7 @@ public class EntradaXML implements Entrada {
 	}
 
 	/**
-	 * Nos dice si hemos llegado ya al final de las lecturas o todavía no
+	 * Nos dice si hemos llegado ya al final de las lecturas o todavï¿½a no
 	 * @return Booleano a true si hemos llegado y a false en otro caso
 	 */
 	@Override
@@ -83,26 +83,27 @@ public class EntradaXML implements Entrada {
 	}
 
 	/**
-	 * getLinVenta nos devuelve la línea de venta que estamos leyendo
-	 * @return String que contendrá la información necesaria para realizar los comandos
+	 * getLinVenta nos devuelve la lï¿½nea de venta que estamos leyendo
+	 * @return String que contendrï¿½ la informaciï¿½n necesaria para realizar los comandos
 	 */
 	@Override
 	public String getLinVenta() {
 		String linVenta = "";
-		//Si hay hijos (documento vacío)
+		//Si hay hijos (documento vacï¿½o)
 		if(!isFinalFichero()){
 			
 			//Vamos a ver el nodo actual
 			Node linea = this.hijos.item(pos-1);
-			//¿Será una línea normal?
+			//ï¿½Serï¿½ una lï¿½nea normal?
 			if(linea.getLocalName() == "linventa"){
 				//Si es el caso, sacamos todas las propiedades
-				linVenta = linea.getAttributes().item(0).getNodeValue() + "&&" + linea.getAttributes().item(1).getNodeValue();
+				linVenta = linea.getAttributes().item(1).getNodeValue() + "&&" + linea.getAttributes().item(0).getNodeValue();
 				//NamedNodeMap atributos = linea.getAttributes();
 				//linVenta+=atributos.getNamedItem("codProd").toString() + "&&";
 				//linVenta+=atributos.getNamedItem("cant").toString();
+				//System.out.print("NodeValue: "+linea.getAttributes().item(1).getNodeValue());
 			} else if(linea.getLocalName() == "deshacerLinVenta"){
-				//¿Será deshacerLinVenta?
+				//ï¿½Serï¿½ deshacerLinVenta?
 				linVenta+="deshacerLinVenta";
 			} else if(linea.getLocalName() == "cancelarVenta"){
 				linVenta+="cancelarVenta";
@@ -115,7 +116,7 @@ public class EntradaXML implements Entrada {
 	/*
 	 * GETTERS
 	 * Nos devuelven otros valores que obtenemos de la Entrada, como es la tarjeta de fidelidad, si es empleado,
-	 * el día y la hora
+	 * el dï¿½a y la hora
 	 */
 	
 	@Override
