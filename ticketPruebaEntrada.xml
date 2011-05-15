@@ -18,6 +18,6 @@
 		<dctoLin>0,75</dctoLin>
 	</linTicket>
 	<totalAPagar cant="57,04"/>
-	<dctoAcumulado cant="2,85"/>
+	<dctoAcumulado cant="3,00"/>
 	<impuestos cant="-60,04"/>
 </ticket>
