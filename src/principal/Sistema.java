@@ -130,178 +130,181 @@ public class Sistema {
 	{
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 
+		
 		//Descuentos
 		try {
-			
-			
 			Venta venta = Sistema.getInstancia().getLastVenta();
-			int dia = venta.getFecha().get(Calendar.DAY_OF_WEEK);
-			int hora = venta.getFecha().get(Calendar.HOUR_OF_DAY);
-					
-			
-			if(factoria.getEmpleado())
-			{
-				descuentos.add(new Empleado());
-			}
-			if(factoria.getTarjetaFid())
-			{
-				descuentos.add(new Tarjeta());
-			}
-			
-			
-			switch(dia)
-			{
-			case Calendar.MONDAY:
+			if(venta!=null) {
 				
-				String res = Propiedades.getProperty("DctoLunes.porcentaje");
-				if(res!=null)
+				int dia = venta.getFecha().get(Calendar.DAY_OF_WEEK);
+				int hora = venta.getFecha().get(Calendar.HOUR_OF_DAY);
+						
+				
+				if(factoria.getEmpleado())
 				{
-					int RES = Integer.valueOf(res);
-					int horaIni = Integer.valueOf(Propiedades.getProperty("DctoLunes.horaInicio"));
-					int horaFin = Integer.valueOf(Propiedades.getProperty("DctoLunes.horaFin"));
+					descuentos.add(new Empleado());
+				}
+				if(factoria.getTarjetaFid())
+				{
+					descuentos.add(new Tarjeta());
+				}
+				
+				
+				switch(dia)
+				{
+				case Calendar.MONDAY:
 					
-					if(horaIni<=hora && hora<horaFin)
+					String res = Propiedades.getProperty("DctoLunes.porcentaje");
+					if(res!=null)
 					{
-						descuentos.add(new DiaDescuento(RES,DiaSemana.LUNES,horaIni,horaFin));
+						int RES = Integer.valueOf(res);
+						int horaIni = Integer.valueOf(Propiedades.getProperty("DctoLunes.horaInicio"));
+						int horaFin = Integer.valueOf(Propiedades.getProperty("DctoLunes.horaFin"));
+						
+						if(horaIni<=hora && hora<horaFin)
+						{
+							descuentos.add(new DiaDescuento(RES,DiaSemana.LUNES,horaIni,horaFin));
+						}
+						
 					}
 					
-				}
-				
-				break;
-				
-			case Calendar.TUESDAY:
-				
-				res = Propiedades.getProperty("DctoMartes.porcentaje");
-				if(res!=null)
-				{
-					int RES = Integer.valueOf(res);
-
-					int horaIni = Integer.valueOf(Propiedades.getProperty("DctoMartes.horaInicio"));
-					int horaFin = Integer.valueOf(Propiedades.getProperty("DctoMartes.horaFin"));
+					break;
 					
-					if(horaIni<=hora && hora<horaFin)
+				case Calendar.TUESDAY:
+					
+					res = Propiedades.getProperty("DctoMartes.porcentaje");
+					if(res!=null)
 					{
-						descuentos.add(new DiaDescuento(RES,DiaSemana.MARTES,horaIni,horaFin));
+						int RES = Integer.valueOf(res);
+	
+						int horaIni = Integer.valueOf(Propiedades.getProperty("DctoMartes.horaInicio"));
+						int horaFin = Integer.valueOf(Propiedades.getProperty("DctoMartes.horaFin"));
+						
+						if(horaIni<=hora && hora<horaFin)
+						{
+							descuentos.add(new DiaDescuento(RES,DiaSemana.MARTES,horaIni,horaFin));
+						}
+						
 					}
 					
+					break;
+					
+			case Calendar.WEDNESDAY:
+	
+			 res = Propiedades.getProperty("DctoMiercoles.porcentaje");
+			if(res!=null)
+			{
+				int RES = Integer.valueOf(res);
+		
+				int horaIni = Integer.valueOf(Propiedades.getProperty("DctoMiercoles.horaInicio"));
+				int horaFin = Integer.valueOf(Propiedades.getProperty("DctoMiercoles.horaFin"));
+				
+				if(horaIni<=hora && hora<horaFin)
+				{
+					descuentos.add(new DiaDescuento(RES,DiaSemana.MIERCOLES,horaIni,horaFin));
 				}
+			
+			}
+		
+			break;
+				case Calendar.THURSDAY:
+					
+					 res = Propiedades.getProperty("DctoJueves.porcentaje");
+					if(res!=null)
+					{
+						int RES = Integer.valueOf(res);
+		
+						int horaIni = Integer.valueOf(Propiedades.getProperty("DctoJueves.horaInicio"));
+						int horaFin = Integer.valueOf(Propiedades.getProperty("DctoJueves.horaFin"));
+						
+						if(horaIni<=hora && hora<horaFin)
+						{
+							descuentos.add(new DiaDescuento(RES,DiaSemana.JUEVES,horaIni,horaFin));
+						}
+						
+					}
 				
 				break;
-				
-		case Calendar.WEDNESDAY:
-	
-	 res = Propiedades.getProperty("DctoMiercoles.porcentaje");
-	if(res!=null)
-	{
-		int RES = Integer.valueOf(res);
-
-		int horaIni = Integer.valueOf(Propiedades.getProperty("DctoMiercoles.horaInicio"));
-		int horaFin = Integer.valueOf(Propiedades.getProperty("DctoMiercoles.horaFin"));
-		
-		if(horaIni<=hora && hora<horaFin)
-		{
-			descuentos.add(new DiaDescuento(RES,DiaSemana.MIERCOLES,horaIni,horaFin));
-		}
-		
-	}
-	
-	break;
-		case Calendar.THURSDAY:
-			
-			 res = Propiedades.getProperty("DctoJueves.porcentaje");
-			if(res!=null)
-			{
-				int RES = Integer.valueOf(res);
-
-				int horaIni = Integer.valueOf(Propiedades.getProperty("DctoJueves.horaInicio"));
-				int horaFin = Integer.valueOf(Propiedades.getProperty("DctoJueves.horaFin"));
-				
-				if(horaIni<=hora && hora<horaFin)
-				{
-					descuentos.add(new DiaDescuento(RES,DiaSemana.JUEVES,horaIni,horaFin));
-				}
-				
-			}
-			
-			break;
-		case Calendar.FRIDAY:
-			
-			 res = Propiedades.getProperty("DctoViernes.porcentaje");
-			if(res!=null)
-			{
-				int RES = Integer.valueOf(res);
-
-				int horaIni = Integer.valueOf(Propiedades.getProperty("DctoViernes.horaInicio"));
-				int horaFin = Integer.valueOf(Propiedades.getProperty("DctoMViernes.horaFin"));
-				
-				if(horaIni<=hora && hora<horaFin)
-				{
-					descuentos.add(new DiaDescuento(RES,DiaSemana.VIERNES,horaIni,horaFin));
-				}
-				
-			}
-			
-			break;
-		case Calendar.SATURDAY:
-			
-			 res = Propiedades.getProperty("DctoSabado.porcentaje");
-			if(res!=null)
-			{
-				int RES = Integer.valueOf(res);
-
-				int horaIni = Integer.valueOf(Propiedades.getProperty("DctoSabado.horaInicio"));
-				int horaFin = Integer.valueOf(Propiedades.getProperty("DctoSabado.horaFin"));
-				
-				if(horaIni<=hora && hora<horaFin)
-				{
-					descuentos.add(new DiaDescuento(RES,DiaSemana.SABADO,horaIni,horaFin));
-				}
-				
-			}
-			
-			break;
-		case Calendar.SUNDAY:
-			
-			 res = Propiedades.getProperty("DctoDomingo.porcentaje");
-			if(res!=null)
-			{
-				int RES = Integer.valueOf(res);
-
-				int horaIni = Integer.valueOf(Propiedades.getProperty("DctoDomingo.horaInicio"));
-				int horaFin = Integer.valueOf(Propiedades.getProperty("DctoDomingo.horaFin"));
-				
-				if(horaIni<=hora && hora<horaFin)
-				{
-					descuentos.add(new DiaDescuento(RES,DiaSemana.DOMINGO,horaIni,horaFin));
-				}
-				
-			}
-			
-			break;				
-			}
+				case Calendar.FRIDAY:
 					
-			getLastVenta().setDescuentos(descuentos);
-			
-		} catch(IOException e){
-			System.out.println(e);
-		}
+					 res = Propiedades.getProperty("DctoViernes.porcentaje");
+					if(res!=null)
+					{
+						int RES = Integer.valueOf(res);
+		
+						int horaIni = Integer.valueOf(Propiedades.getProperty("DctoViernes.horaInicio"));
+						int horaFin = Integer.valueOf(Propiedades.getProperty("DctoMViernes.horaFin"));
+						
+						if(horaIni<=hora && hora<horaFin)
+						{
+							descuentos.add(new DiaDescuento(RES,DiaSemana.VIERNES,horaIni,horaFin));
+						}
+						
+					}
+					
+					break;
+				case Calendar.SATURDAY:
+					
+					 res = Propiedades.getProperty("DctoSabado.porcentaje");
+					if(res!=null)
+					{
+						int RES = Integer.valueOf(res);
+		
+						int horaIni = Integer.valueOf(Propiedades.getProperty("DctoSabado.horaInicio"));
+						int horaFin = Integer.valueOf(Propiedades.getProperty("DctoSabado.horaFin"));
+						
+						if(horaIni<=hora && hora<horaFin)
+						{
+							descuentos.add(new DiaDescuento(RES,DiaSemana.SABADO,horaIni,horaFin));
+						}
+						
+					}
+					
+					break;
+				case Calendar.SUNDAY:
+					
+					 res = Propiedades.getProperty("DctoDomingo.porcentaje");
+					if(res!=null)
+					{
+						int RES = Integer.valueOf(res);
+		
+						int horaIni = Integer.valueOf(Propiedades.getProperty("DctoDomingo.horaInicio"));
+						int horaFin = Integer.valueOf(Propiedades.getProperty("DctoDomingo.horaFin"));
+						
+						if(horaIni<=hora && hora<horaFin)
+						{
+							descuentos.add(new DiaDescuento(RES,DiaSemana.DOMINGO,horaIni,horaFin));
+						}
+						
+					}
+					
+					break;				
+					}
+							
+					getLastVenta().setDescuentos(descuentos);
+					
 				
-		//Impuestos
-		CalculoImpuestos calc = new RESTCalculoImpuestos();
-		getLastVenta().calcularTotalImpuestos(calc);
+				
+						
+				//Impuestos
+				CalculoImpuestos calc = new RESTCalculoImpuestos();
+				getLastVenta().calcularTotalImpuestos(calc);
+				
+				//Salida
+				getLastVenta().setDescuentoAcumulado(getLastVenta().obtenerDescuento());
+				
+				/*/PROBANDO
+				System.out.print("\nPROBANDO\n");
+				System.out.print("DctoAcumulado "+getLastVenta().getDescuentoAcumulado());
+				System.out.print("\nDctoLin "+getLastVenta().getDescuentoLin(10));
+				System.out.print("\nFIN_PROBANDO\n");
+		>>>>>>> branch 'refs/heads/master' of https://HanHelsing@github.com/rlm33/TPV-RASS.git
+				//FIN_PROBANDO*/
+			this.crearTicket();}
+		} catch (Exception e){
+			
+		}
 		
-		//Salida
-		getLastVenta().setDescuentoAcumulado(getLastVenta().obtenerDescuento());
-		
-		/*/PROBANDO
-		System.out.print("\nPROBANDO\n");
-		System.out.print("DctoAcumulado "+getLastVenta().getDescuentoAcumulado());
-		System.out.print("\nDctoLin "+getLastVenta().getDescuentoLin(10));
-		System.out.print("\nFIN_PROBANDO\n");
->>>>>>> branch 'refs/heads/master' of https://HanHelsing@github.com/rlm33/TPV-RASS.git
-		//FIN_PROBANDO*/
-		
-		this.crearTicket();
 	}
 	
 	public void crearTicket()

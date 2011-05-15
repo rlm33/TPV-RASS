@@ -20,10 +20,10 @@ public class pruebaEntrada {
 			s.run();
 			
 			s.inicializar("CAJA1", "cancelarVenta.xml", "ticketPruebaEntrada2.xml");
-			s.run();
+			//s.run();
 			
 			s.inicializar("CAJA1", "deshacer1Venta.xml", "ticketPruebaEntrada3.xml");
-			s.run();
+			//s.run();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
