@@ -131,7 +131,6 @@ public class Sistema {
 	
 	public void cerrarVenta(Venta v)
 	{
-		int descuentoFinal = 0;
 		ArrayList<Descuento> descuentos = new ArrayList<Descuento>();
 
 		//Descuentos
@@ -296,7 +295,7 @@ public class Sistema {
 		
 		//Salida
 		getLastVenta().setDescuentoAcumulado(getLastVenta().obtenerDescuento());
-		salida.generarTicket(getLastVenta());
+		crearTicket();
 	}
 	
 	public void crearTicket()
@@ -310,6 +309,7 @@ public class Sistema {
 		this.comandos.addAll(this.factoria.getComando());
 		for (int i=ultimo; i<comandos.size(); i++)
 		{
+			System.out.println(comandos.get(i).getClass().getSimpleName());
 			comandos.get(i).ejecutar();
 		}
 	}
