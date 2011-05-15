@@ -34,7 +34,7 @@ public class Sistema {
 	private Sistema(){}
 	
 	/**
-	 * Este método es el encargado de cargar las propiedades y la lista de catálogos
+	 * Este mï¿½todo es el encargado de cargar las propiedades y la lista de catï¿½logos
 	 * @throws IOException Posibles excepciones
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
@@ -51,7 +51,7 @@ public class Sistema {
 	}
 	
 	/**
-	 * Crea una nueva venta (asociada con su caja), la añade a su lista de ventas y 
+	 * Crea una nueva venta (asociada con su caja), la aï¿½ade a su lista de ventas y 
 	 * devuelve la venta para poder usarla en "anyadirLinVenta". 
 	 * 
 	 * @param c
@@ -77,9 +77,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * He pensado que alguien que quiera añadir una linea de venta querrá poner en una venta
-	 * cierta cantidad de un producto que ha pasado por el lector de códigos o ha puesto manualmente.
-	 * En cualquier caso, devuelve la descripción de dicho producto y el subtotal que lleva la venta 
+	 * He pensado que alguien que quiera aï¿½adir una linea de venta querrï¿½ poner en una venta
+	 * cierta cantidad de un producto que ha pasado por el lector de cï¿½digos o ha puesto manualmente.
+	 * En cualquier caso, devuelve la descripciï¿½n de dicho producto y el subtotal que lleva la venta 
 	 * hasta el momento o un mensaje de error si no reconoce el producto.
 	 * 
 	 * @param cod
@@ -295,7 +295,7 @@ public class Sistema {
 		
 		//Salida
 		getLastVenta().setDescuentoAcumulado(getLastVenta().obtenerDescuento());
-		crearTicket();
+		this.crearTicket();
 	}
 	
 	public void crearTicket()
