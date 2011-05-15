@@ -17,6 +17,7 @@ public class ComandoFactory {
 	
 	public ComandoFactory(String fichero) throws ParserConfigurationException, SAXException, IOException{
 		this.listaComandos = new ArrayList<Comando>();
+		this.listaComandos.add(new CrearNuevaVenta());
 		String[] campos = fichero.split("[.]");
 		if(campos[campos.length-1].equals("xml")){
 			this.entrada = new EntradaXML(fichero);
