@@ -18,6 +18,7 @@ public class SalidaXML implements Salida{
 
 	@Override
 	public void setVenta(Venta venta) {
+		float dctoAcu = 0.0f;
 		DecimalFormat df = new DecimalFormat("0.00");
 		String xmlCode = "<ticket>\n";
 		if(venta != null){			
@@ -28,10 +29,11 @@ public class SalidaXML implements Salida{
 				xmlCode += tab + "<cant>" + v.getCantidad() + "</cant>\n";
 				xmlCode += tab + "<pUnit>" + df.format(v.getProducto().getPvp()) + "</pUnit>\n";
 				xmlCode += tab + "<dctoLin>" + df.format(venta.getDescuentoLin(v.getProducto().getPvp())*v.getCantidad()) + "</dctoLin>\n";
+				dctoAcu += venta.getDescuentoLin(v.getProducto().getPvp())*v.getCantidad();
 				xmlCode += "\t</linTicket>\n";				
 			}
 			xmlCode += "\t<totalAPagar cant=\"" + df.format(venta.subtotal()) + "\"/>\n";
-			xmlCode += "\t<dctoAcumulado cant=\"" + df.format(((venta.getDescuentoAcumulado()/100.0f)*venta.subtotal())) + "\"/>\n";
+			xmlCode += "\t<dctoAcumulado cant=\"" + df.format(dctoAcu) + "\"/>\n";
 			xmlCode += "\t<impuestos cant=\"" + df.format(venta.getImpuestos()) + "\"/>\n";
 		}
 		
