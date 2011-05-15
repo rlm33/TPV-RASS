@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="jars/jersey-client-1.7-ea06.jar"/>
 	<classpathentry kind="lib" path="jars/jersey-core-1.7-ea06.jar"/>
 	<classpathentry kind="lib" path="jars/jsr311-api-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HanHelsing/TPV-Final/jdom/lib/xerces.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HanHelsing/TPV-Final/jdom/build/jdom.jar"/>
+	<classpathentry kind="lib" path="jdom/build/jdom.jar"/>
+	<classpathentry kind="lib" path="jdom/lib/xerces.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
