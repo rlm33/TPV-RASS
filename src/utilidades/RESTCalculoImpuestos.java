@@ -25,7 +25,7 @@ public class RESTCalculoImpuestos implements CalculoImpuestos{
 		ClientConfig config = new DefaultClientConfig();
 		Client client = Client.create(config);
 		
-		String uri = Propiedades.getProperty("CalculadoraImpuestos.WSDL");
+		String uri = Propiedades.getProperty("CalculadoraImpuestos.URI");
 		WebResource service = client.resource(uri+"?producto="+cod);
 		
 		// Get XML

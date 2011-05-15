@@ -1,0 +1,17 @@
+<ticket>
+	<linTicket>
+		<descr>APLI CAJA 100 HOJAS 1200 ETIQUETAS BLANCAS PARA INKJET, LASER Y FOTOCOPIADORA 97X42.4MM. REF. 1288</descr>
+		<cant>2</cant>
+		<pUnit>15.01</pUnit>
+		<dctoLin>30.02</dctoLin>
+	</linTicket>
+	<linTicket>
+		<descr>APLI CAJA 100 HOJAS 2000 ETIQUETAS BLANCAS PARA INKJET, LASER Y FOTOCOPIADORA 105X29MM. REF.1299</descr>
+		<cant>1</cant>
+		<pUnit>15.01</pUnit>
+		<dctoLin>15.01</dctoLin>
+	</linTicket>
+	<totalAPagar cant="0.0"/>
+	<dctoAcumulado cant="0"/>
+	<impuestos>cant="-45.03"/>
+</ticket>

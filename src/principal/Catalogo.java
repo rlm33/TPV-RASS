@@ -66,6 +66,8 @@ public class Catalogo {
 	
 	public boolean existeProducto(String cod) throws IOException
 	{
+		System.out.println("CODIGO " +cod);
+		
 		boolean ret=false;
 		for(int i=0;!ret && i<productos.size();i++)
 		{

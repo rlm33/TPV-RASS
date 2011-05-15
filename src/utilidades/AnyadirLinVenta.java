@@ -24,5 +24,10 @@ public class AnyadirLinVenta implements Comando{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public String getCodigo()
+	{
+		return codigo;
+	}
 
 }
