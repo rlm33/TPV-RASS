@@ -21,8 +21,9 @@ public class Main {
 		
 		try {
 			
-			s.inicializar("CAJA1", "ficheroVenta.xml", "pruebaEntrada.xml");
+			s.inicializar("CAJA1", args[0], args[1]);
 			s.run();
+			s.crearTicket();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

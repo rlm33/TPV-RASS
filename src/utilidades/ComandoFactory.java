@@ -27,10 +27,10 @@ public class ComandoFactory {
 	}
 	
 	public ArrayList<Comando> getComando(){
-		
-		if(this.entrada != null){
-			while(!this.entrada.isFinalFichero()){
-				String linea = this.entrada.getLinVenta();
+		if(entrada != null){
+			while(!entrada.isFinalFichero()){
+				System.out.println("Leo la línea del fichero");
+				String linea = entrada.getLinVenta();
 				if(linea.equals(ComandosList.deshacerLinVenta)){
 					Comando c = new DeshacerLinVenta();
 					this.listaComandos.add(c);
@@ -46,6 +46,10 @@ public class ComandoFactory {
 			}
 		}
 		return this.listaComandos;
+	}
+	
+	public Entrada getEntrada(){
+		return this.entrada;
 	}
 	
 	/*
