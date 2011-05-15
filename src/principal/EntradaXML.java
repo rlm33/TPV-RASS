@@ -121,14 +121,13 @@ public class EntradaXML implements Entrada {
 	
 	@Override
 	public boolean getTarjetaFid() {
-		// TODO Auto-generated method stub
 		String resultado = "";
-		if(this.cliente != null){
-			NamedNodeMap atributos = this.cliente.getAttributes();
-			resultado += atributos.getNamedItem("tarjetaFid").toString();
+		if(cliente != null){
+			resultado = cliente.getAttributes().item(1).getNodeValue();
+			//System.out.print(cliente.getAttributes().item(1).getNodeValue());
 		}		
-		if(resultado == "true"){
-			return true;
+		if(resultado.equals("true")){
+			/*System.out.print("\ntarjeta true\n")*/;return true;
 		}
 		return false;
 	}
@@ -137,11 +136,10 @@ public class EntradaXML implements Entrada {
 	public boolean getEmpleado() {
 		// TODO Auto-generated method stub
 		String resultado = "";
-		if(this.cliente != null){
-			NamedNodeMap atributos = this.cliente.getAttributes();
-			resultado += atributos.getNamedItem("empleado").toString();
+		if(cliente != null){
+			resultado = cliente.getAttributes().item(0).getNodeValue();
 		}		
-		if(resultado == "true"){
+		if(resultado.equals("true")){
 			return true;
 		}
 		return false;
@@ -151,9 +149,8 @@ public class EntradaXML implements Entrada {
 	public String getDia() {
 		// TODO Auto-generated method stub
 		String resultado = "";
-		if(this.fecha != null){
-			NamedNodeMap atributos = this.cliente.getAttributes();
-			resultado += atributos.getNamedItem("dia").toString();
+		if(fecha != null){
+			resultado = fecha.getAttributes().item(0).getNodeValue();
 		}		
 		return resultado;
 	}
@@ -163,8 +160,7 @@ public class EntradaXML implements Entrada {
 		// TODO Auto-generated method stub
 		String resultado = "";
 		if(this.fecha != null){
-			NamedNodeMap atributos = this.cliente.getAttributes();
-			resultado += atributos.getNamedItem("hora").toString();
+			resultado = fecha.getAttributes().item(1).getNodeValue();
 		}		
 		return resultado;
 	}

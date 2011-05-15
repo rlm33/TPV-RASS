@@ -148,7 +148,7 @@ public class Sistema {
 			}
 			if(factoria.getTarjetaFid())
 			{
-				descuentos.add(new Tarjeta());
+				descuentos.add(new Tarjeta());System.out.print("TRUE");
 			}
 			
 			
@@ -291,7 +291,7 @@ public class Sistema {
 				
 		//Impuestos
 		CalculoImpuestos calc = new RESTCalculoImpuestos();
-		getLastVenta().calcularTotalImpuestos(calc);
+		//getLastVenta().calcularTotalImpuestos(calc);
 		
 		//Salida
 		getLastVenta().setDescuentoAcumulado(getLastVenta().obtenerDescuento());
