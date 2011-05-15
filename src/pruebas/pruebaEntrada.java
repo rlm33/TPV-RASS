@@ -16,7 +16,7 @@ public class pruebaEntrada {
 		
 		try {
 			
-			s.inicializar("CAJA1", "ficheroVenta.xml", "pruebaEntrada.xml");
+			s.inicializar("CAJA1", "pruebaEntrada.xml", "ticketPruebaEntrada.xml");
 			s.run();
 			
 		} catch (IOException e) {

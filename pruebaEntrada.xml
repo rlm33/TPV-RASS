@@ -2,7 +2,7 @@
 
 <venta>
 <fecha dia="L" hora="09:40"/>
-<linventa codProd="001730" cant="2"/>
-<linventa codProd="002102" cant="1"/>
+<linventa codProd="001633" cant="2"/>
+<linventa codProd="001668" cant="1"/>
 <cliente tarjetaFid="true" empleado="false"/>
 </venta>
