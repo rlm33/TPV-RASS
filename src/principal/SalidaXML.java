@@ -25,12 +25,12 @@ public class SalidaXML implements Salida{
 				xmlCode += tab + "<descr>" + v.getProducto().getDescripcion() + "</descr>\n";
 				xmlCode += tab + "<cant>" + v.getCantidad() + "</cant>\n";
 				xmlCode += tab + "<pUnit>" + v.getProducto().getPvp() + "</pUnit>\n";
-				xmlCode += tab + "<dctoLin>" + v.getDescuentoLin() + "</dctoLin>\n";
+				xmlCode += tab + "<dctoLin>" + venta.getDescuentoLin(v.getProducto().getPvp()) + "</dctoLin>\n";
 				xmlCode += "\t" + "</linTicket>" + "\n";				
 			}
-			xmlCode += "\t<totalAPagar>cant=\"" + venta.subtotal() + "\"</totalAlPagar>\n";
-			xmlCode += "\t<dctoAcumulado>cant=\"" + venta.getDescuentoAcumulado() + "\"</dctoAcumulado>\n";
-			xmlCode += "\t<impuestos>cant=\"" + venta.getImpuestos() + "\"</impuestos>\n";
+			xmlCode += "\t<totalAPagar cant=\"" + venta.subtotal() + "\"/>\n";
+			xmlCode += "\t<dctoAcumulado cant=\"" + venta.getDescuentoAcumulado() + "\"/>\n";
+			xmlCode += "\t<impuestos>cant=\"" + venta.getImpuestos() + "\"/>\n";
 		}
 		
 		xmlCode += "</ticket>";

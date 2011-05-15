@@ -76,6 +76,8 @@ public class Venta {
 		{
 			ret += linventas.get(i).subtotal();
 		}
+		//Le sumamos los impuestos
+		ret += this.totalImpuestos;
 		//Aplicamos el descuento acumulado al resultado final y aplicamos el redondeo
 		ret = ret - (ret * this.descuentoAcumulado);
 	    BigDecimal big = new BigDecimal(ret);
@@ -109,6 +111,13 @@ public class Venta {
 	
 	public int getDescuentoAcumulado(){
 		return this.descuentoAcumulado;
+	}
+
+	public float getDescuentoLin(float pvp) {
+		pvp = pvp - (pvp * this.descuentoAcumulado);
+		BigDecimal big = new BigDecimal(pvp);
+		big = big.setScale(2, RoundingMode.HALF_UP);
+		return big.floatValue();
 	}
 	
 }

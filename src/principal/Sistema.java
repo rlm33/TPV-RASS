@@ -143,15 +143,6 @@ public class Sistema {
 			int horaInicio = 0;			
 			int horaFin = 0;
 			
-			//ELIMINAR EN EL FUTURO DESARROLLO DEL SOFTWARE
-			//Comprobamos que sean buenos valores
-			if(descFidEmpresa != 5){
-				descFidEmpresa = 5;
-			}
-			if(descEmpleado != 15){
-				descEmpleado = 15;
-			}
-			
 			//Puede ser que dependiendo del día haya un descuento u otro
 			if(!Propiedades.getProperty("DctoLunes.porcentaje").isEmpty()){
 				diaVenta = 2;
@@ -168,19 +159,6 @@ public class Sistema {
 				porcentajeDia = Integer.parseInt(Propiedades.getProperty("DctoMiercoles.porcentaje"));
 				horaInicio = Integer.parseInt(Propiedades.getProperty("DctoMiercoles.horaInicio"));
 				horaFin = Integer.parseInt(Propiedades.getProperty("DctoMiercoles.horaFin"));
-				
-				//ELIMINAR EN EL FUTURO DESARROLLO DEL SOFTWARE
-				//Comprobación
-				if(porcentajeDia != 8){
-					porcentajeDia = 8;
-				}
-				if(horaInicio != 10){
-					horaInicio = 10;
-				}
-				if(horaFin != 12){
-					horaFin = 12;
-				}
-				
 			} else if(!Propiedades.getProperty("DctoJueves.porcentaje").isEmpty()){
 				diaVenta = 5;
 				porcentajeDia = Integer.parseInt(Propiedades.getProperty("DctoJueves.porcentaje"));
