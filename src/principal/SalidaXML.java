@@ -32,7 +32,7 @@ public class SalidaXML implements Salida{
 			}
 			xmlCode += "\t<totalAPagar cant=\"" + df.format(venta.subtotal()) + "\"/>\n";
 			xmlCode += "\t<dctoAcumulado cant=\"" + df.format(venta.getDescuentoAcumulado()*venta.subtotal()/100) + "\"/>\n";
-			xmlCode += "\t<impuestos>cant=\"" + df.format(venta.getImpuestos()) + "\"/>\n";
+			xmlCode += "\t<impuestos cant=\"" + df.format(venta.getImpuestos()) + "\"/>\n";
 		}
 		
 		xmlCode += "</ticket>";
