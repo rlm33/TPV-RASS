@@ -141,8 +141,7 @@ public class Venta {
 		for (int i=0; i<linventas.size(); i++)
 		{
 			impuestos += linventas.get(i).getCantidad()*
-				calc.calcularImpuestos(linventas.get(i).getProducto().getCodigo())*
-				linventas.get(i).getProducto().getPvp();
+				calc.calcularImpuestos(linventas.get(i).getProducto().getCodigo());
 		}
 		
 		this.totalImpuestos = impuestos;

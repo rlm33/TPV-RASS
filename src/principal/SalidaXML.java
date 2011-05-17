@@ -20,24 +20,33 @@ public class SalidaXML implements Salida{
 	public void setVenta(Venta venta) {
 		float dctoAcu = 0.0f;
 		DecimalFormat df = new DecimalFormat("0.00");
-		String xmlCode = "<ticket>\n";
-		if(venta != null){			
+		String xmlCode = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n";
+		if(venta != null){		
+			xmlCode += "<ticket>\n";
 			for(LinVenta v : venta.getLinventas()){
+				float cant = 0, pUnit = 0, dctoLin = 0;
 				String tab = "\t\t";
 				xmlCode += "\t<linTicket>\n";
 				xmlCode += tab + "<descr>" + v.getProducto().getDescripcion() + "</descr>\n";
 				xmlCode += tab + "<cant>" + v.getCantidad() + "</cant>\n";
+				cant = v.getCantidad();
 				xmlCode += tab + "<pUnit>" + df.format(v.getProducto().getPvp()) + "</pUnit>\n";
+				pUnit = v.getProducto().getPvp();
 				xmlCode += tab + "<dctoLin>" + df.format(venta.getDescuentoLin(v.getProducto().getPvp())*v.getCantidad()) + "</dctoLin>\n";
+				dctoLin = venta.getDescuentoLin(v.getProducto().getPvp())*v.getCantidad();
+				xmlCode += tab + "<pLin>" + df.format(pUnit * cant - dctoLin) + "</pLin>\n";
 				dctoAcu += venta.getDescuentoLin(v.getProducto().getPvp())*v.getCantidad();
 				xmlCode += "\t</linTicket>\n";				
 			}
-			xmlCode += "\t<totalAPagar cant=\"" + df.format(venta.subtotal()) + "\"/>\n";
-			xmlCode += "\t<dctoAcumulado cant=\"" + df.format(dctoAcu) + "\"/>\n";
-			xmlCode += "\t<impuestos cant=\"" + df.format(venta.getImpuestos()) + "\"/>\n";
+			if(venta.getLinventas().size() > 0){
+				xmlCode += "\t<totalAPagar cant=\"" + df.format(venta.subtotal()) + "\"/>\n";
+				xmlCode += "\t<dctoAcumulado cant=\"" + df.format(dctoAcu) + "\"/>\n";
+				xmlCode += "\t<impuestos cant=\"" + df.format(venta.getImpuestos()) + "\"/>\n";
+			}
+			xmlCode += "</ticket>";
 		}
 		
-		xmlCode += "</ticket>";
+		
 		try {
 			writer.write(xmlCode);
 		} catch (IOException e) {

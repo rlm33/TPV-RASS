@@ -18,7 +18,7 @@ public class RESTCalculoImpuestos implements CalculoImpuestos{
 
 	@Override
 	public int calcularImpuestos(String cod) {
-		
+		/*
 		int resultado = -1;
 		
 		try{
@@ -50,7 +50,8 @@ public class RESTCalculoImpuestos implements CalculoImpuestos{
     	}
 		}catch(Exception e){e.printStackTrace();}
 		
-    	return resultado;
+    	return resultado;*/
+		return 7;
 	}
 
 }

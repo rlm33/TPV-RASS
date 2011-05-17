@@ -13,7 +13,7 @@ public interface Entrada {
 	
 	public abstract boolean getEmpleado();
 	
-	public abstract String getDia();
+	public abstract int getDia();
 	
 	public abstract String getHora();
 	

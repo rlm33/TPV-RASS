@@ -57,10 +57,11 @@ public class Sistema {
 	 * @param c
 	 * @return
 	 */
-	public Venta crearNuevaVenta()
+	public Venta crearNuevaVenta(Calendar fecha)
 	{
 
 		Venta v = new Venta(caja);
+		v.setFecha(fecha);
 		ventas.add(v);
 		
 		return v;
@@ -69,6 +70,7 @@ public class Sistema {
 	public void cancelarVenta()
 	{
 		ventas.remove(ventas.size()-1);
+		
 	}
 	
 	private float subtotal(Venta v)
@@ -96,11 +98,6 @@ public class Sistema {
 				Producto p = Catalogo.getInstancia().getProducto(cod);
 				LinVenta lv = new LinVenta(p,cantidad);
 				ventas.get(ventas.size()-1).anyadirLinVenta(lv);
-			}
-			else
-			{
-				System.out.print("\nERROR: PRODUCTO NO CATALOGADO\n");
-				//return "ERROR: PRODUCTO NO CATALOGADO";
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -135,10 +132,9 @@ public class Sistema {
 		try {
 			Venta venta = Sistema.getInstancia().getLastVenta();
 			if(venta!=null) {
-				
+								
 				int dia = venta.getFecha().get(Calendar.DAY_OF_WEEK);
-				int hora = venta.getFecha().get(Calendar.HOUR_OF_DAY);
-						
+				int hora = venta.getFecha().get(Calendar.HOUR_OF_DAY);						
 				
 				if(factoria.getEmpleado())
 				{
@@ -292,15 +288,9 @@ public class Sistema {
 				
 				//Salida
 				getLastVenta().setDescuentoAcumulado(getLastVenta().obtenerDescuento());
-				
-				/*/PROBANDO
-				System.out.print("\nPROBANDO\n");
-				System.out.print("DctoAcumulado "+getLastVenta().getDescuentoAcumulado());
-				System.out.print("\nDctoLin "+getLastVenta().getDescuentoLin(10));
-				System.out.print("\nFIN_PROBANDO\n");
-		>>>>>>> branch 'refs/heads/master' of https://HanHelsing@github.com/rlm33/TPV-RASS.git
-				//FIN_PROBANDO*/
-			this.crearTicket();}
+
+			}
+			this.crearTicket();
 		} catch (Exception e){
 			
 		}
@@ -318,7 +308,10 @@ public class Sistema {
 		this.comandos.addAll(this.factoria.getComando());
 		for (int i=ultimo; i<comandos.size(); i++)
 		{
-			comandos.get(i).ejecutar();
+			comandos.get(i).ejecutar();			
+			if(comandos.get(i).getClass().getSimpleName().equals("CancelarVenta")){
+				i = comandos.size();
+			}
 		}
 		this.cerrarVenta();
 	}

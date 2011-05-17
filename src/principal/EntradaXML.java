@@ -91,17 +91,13 @@ public class EntradaXML implements Entrada {
 			//Vamos a ver el nodo actual
 			Node linea = this.hijos.item(pos-1);
 			//�Ser� una l�nea normal?
-			if(linea.getLocalName() == "linventa"){
+			if(linea.getLocalName().equalsIgnoreCase("linventa")){
 				//Si es el caso, sacamos todas las propiedades
-				linVenta = linea.getAttributes().item(1).getNodeValue() + "&&" + linea.getAttributes().item(0).getNodeValue();
-				//NamedNodeMap atributos = linea.getAttributes();
-				//linVenta+=atributos.getNamedItem("codProd").toString() + "&&";
-				//linVenta+=atributos.getNamedItem("cant").toString();
-				//System.out.print("NodeValue: "+linea.getAttributes().item(1).getNodeValue());
-			} else if(linea.getLocalName() == "deshacerLinVenta"){
+				linVenta = linea.getAttributes().item(1).getNodeValue().trim() + "&&" + linea.getAttributes().item(0).getNodeValue().trim();
+			} else if(linea.getLocalName().equalsIgnoreCase("deshacerLinVenta")){
 				//�Ser� deshacerLinVenta?
 				linVenta+="deshacerLinVenta";
-			} else if(linea.getLocalName() == "cancelarVenta"){
+			} else if(linea.getLocalName().equalsIgnoreCase("cancelarVenta")){
 				linVenta+="cancelarVenta";
 				}
 			pos += 2;
@@ -120,10 +116,10 @@ public class EntradaXML implements Entrada {
 		String resultado = "";
 		if(cliente != null){
 			resultado = cliente.getAttributes().item(1).getNodeValue();
-			//System.out.print(cliente.getAttributes().item(1).getNodeValue());
+			resultado = resultado.trim();
 		}		
 		if(resultado.equals("true")){
-			/*System.out.print("\ntarjeta true\n")*/;return true;
+			return true;
 		}
 		return false;
 	}
@@ -134,6 +130,7 @@ public class EntradaXML implements Entrada {
 		String resultado = "";
 		if(cliente != null){
 			resultado = cliente.getAttributes().item(0).getNodeValue();
+			resultado = resultado.trim();
 		}		
 		if(resultado.equals("true")){
 			return true;
@@ -142,13 +139,31 @@ public class EntradaXML implements Entrada {
 	}
 
 	@Override
-	public String getDia() {
+	public int getDia() {
 		// TODO Auto-generated method stub
-		String resultado = "";
+		char resultado = 0;
+		int res = 0;
 		if(fecha != null){
-			resultado = fecha.getAttributes().item(0).getNodeValue();
-		}		
-		return resultado;
+			String aux = fecha.getAttributes().item(0).getNodeValue().trim();
+			resultado = aux.charAt(0);
+		}
+		switch(resultado){
+		case 'L': res = 2;
+		break;
+		case 'M': res = 3;
+		break;
+		case 'X': res = 4;
+		break;
+		case 'J': res = 5;
+		break;
+		case 'V': res = 6;
+		break;
+		case 'S': res = 7;
+		break;
+		case 'D': res = 1;
+		break;
+		}
+		return res;
 	}
 	
 	@Override
@@ -157,6 +172,7 @@ public class EntradaXML implements Entrada {
 		String resultado = "";
 		if(this.fecha != null){
 			resultado = fecha.getAttributes().item(1).getNodeValue();
+			resultado = resultado.trim();
 		}		
 		return resultado;
 	}

@@ -2,6 +2,7 @@ package utilidades;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -17,20 +18,28 @@ public class ComandoFactory {
 	
 	public ComandoFactory(String fichero) throws ParserConfigurationException, SAXException, IOException{
 		this.listaComandos = new ArrayList<Comando>();
-		this.listaComandos.add(new CrearNuevaVenta());
+		
 		String[] campos = fichero.split("[.]");
 		if(campos[campos.length-1].equals("xml")){
 			this.entrada = new EntradaXML(fichero);
 		} else {
 			this.entrada = null;
 		}
+		
+		Calendar fecha = Calendar.getInstance();
+		fecha.set(Calendar.DAY_OF_WEEK, getDia());
+		String [] hora = getHora().split(":");
+		fecha.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hora[0]));
+		fecha.set(Calendar.MINUTE, Integer.parseInt(hora[1]));
+		
+		this.listaComandos.add(new CrearNuevaVenta(fecha));
 	}
 	
 	public ArrayList<Comando> getComando(){
 		if(entrada != null){
 			while(!entrada.isFinalFichero()){
 				String linea = entrada.getLinVenta();
-				if(linea.equals("deshacerLinVenta")){
+				if(linea.equalsIgnoreCase("deshacerLinVenta")){
 					Comando c = new DeshacerLinVenta();
 					this.listaComandos.add(c);
 					
@@ -38,8 +47,10 @@ public class ComandoFactory {
 					Comando c = new CancelarVenta();
 					this.listaComandos.add(c);
 				} else {
-					String [] parte = linea.split("[&][&]"); //System.out.print("CrearComandoLinVenta: "+parte[0]);
-					Comando c = new AnyadirLinVenta(parte[0],Integer.parseInt(parte[1]));
+					String [] parte = linea.split("&&");
+					int cant = Integer.parseInt(parte[1]);
+					if(cant < 0) cant = 0;
+					Comando c = new AnyadirLinVenta(parte[0],cant);
 					this.listaComandos.add(c);
 				}
 			}
@@ -62,7 +73,7 @@ public class ComandoFactory {
 		return this.entrada.getEmpleado();
 	}
 	
-	public String getDia(){
+	public int getDia(){
 		return this.entrada.getDia();
 	}
 	

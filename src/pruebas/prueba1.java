@@ -21,7 +21,7 @@ public class prueba1 {
 		
 		
 		Sistema sistema = Sistema.getInstancia();
-		sistema.inicializar("CAJA1","ficheroVenta.xml","ficheroTicket.xml");
+		sistema.inicializar("CAJA1","venta1.xml","salida1.xml");
 		
 		//DirectorEntrada de = new DirectorEntrada(new EntradaXML("ficheroVenta.xml"));
 		
