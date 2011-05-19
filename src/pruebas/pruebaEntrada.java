@@ -20,13 +20,13 @@ public class pruebaEntrada {
 			s.run();
 			
 			s.inicializar("CAJA1", "venta2.xml", "salida2.xml");
-			s.run();
+			//s.run();
 			
 			s.inicializar("CAJA1", "venta3.xml", "salida3.xml");
-			s.run();
+			//s.run();
 			
 			s.inicializar("CAJA1", "venta4.xml", "salida4.xml");
-			s.run();
+			//s.run();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

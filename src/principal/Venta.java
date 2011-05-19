@@ -8,6 +8,7 @@ import java.util.Calendar;
 
 import utilidades.CalculoImpuestos;
 import utilidades.Propiedades;
+import utilidades.RESTCalculoImpuestos;
 
 /**
  * Clase de la ventas
@@ -46,7 +47,7 @@ public class Venta {
 		try {
 			String politica= Propiedades.getProperty("PoliticaDctos.tipo");
 			
-			if(politica == "NO_ACUMULABLE")
+			if(politica.equalsIgnoreCase("NO_ACUMULABLE"))
 			{
 				int mayor = 0;
 				for(int i=0;i<descuentos.size();i++)
@@ -64,7 +65,7 @@ public class Venta {
 				int suma = 0;
 				for(int i=0;i<descuentos.size();i++)
 				{
-						suma = descuentos.get(i).getDescuento();
+						suma += descuentos.get(i).getDescuento();
 				}
 				
 				RES = Math.min(100,suma);
@@ -140,8 +141,14 @@ public class Venta {
 		
 		for (int i=0; i<linventas.size(); i++)
 		{
-			impuestos += linventas.get(i).getCantidad()*
-				calc.calcularImpuestos(linventas.get(i).getProducto().getCodigo());
+			//pLin = pUnit * cant - dctoLin;
+			float pvp = linventas.get(i).getProducto().getPvp();
+			float dctoLin = getDescuentoLin(pvp) * linventas.get(i).getCantidad();
+			float pLin = pvp * linventas.get(i).getCantidad() - dctoLin;
+			
+			float porcentajeI = calc.calcularImpuestos(linventas.get(i).getProducto().getCodigo()) / 100f;
+			
+			impuestos += pLin - (pLin/(1+porcentajeI));
 		}
 		
 		this.totalImpuestos = impuestos;

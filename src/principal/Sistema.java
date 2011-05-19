@@ -282,12 +282,12 @@ public class Sistema {
 				
 				
 						
+				//Salida
+				getLastVenta().setDescuentoAcumulado(getLastVenta().obtenerDescuento());
+				
 				//Impuestos
 				CalculoImpuestos calc = new RESTCalculoImpuestos();
 				getLastVenta().calcularTotalImpuestos(calc);
-				
-				//Salida
-				getLastVenta().setDescuentoAcumulado(getLastVenta().obtenerDescuento());
 
 			}
 			this.crearTicket();
