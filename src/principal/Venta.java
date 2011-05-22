@@ -45,7 +45,7 @@ public class Venta {
 		int RES = 0;
 		
 		try {
-			String politica= Propiedades.getProperty("PoliticaDctos.tipo");
+			String politica= Propiedades.getProperty("DescuentosAplicables.politicaAplicacion");
 			
 			if(politica.equalsIgnoreCase("NO_ACUMULABLE"))
 			{
@@ -72,6 +72,10 @@ public class Venta {
 			}
 		}catch(Exception e){e.printStackTrace();}
 		
+		//Si es negativo...
+		if(RES<0){
+			RES = 0;
+		}
 		return RES;
 		
 	}

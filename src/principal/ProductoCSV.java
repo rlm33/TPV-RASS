@@ -24,8 +24,11 @@ public class ProductoCSV implements EntradaCatalogo {
 	      line = dis.readLine ();
 	      while ( (line = dis.readLine ()) != null  && contador<numItemsMemoria) {
 	        String[] partes =  line.split(";");
-	        Producto p =  new Producto(partes[0].split(" ")[1],partes[1],Float.valueOf(partes[2]));
-	        productos.add(p);
+	        String[] precio = partes[2].split("[.]");
+	        if(precio.length <= 2){
+	        	Producto p =  new Producto(partes[0].split(" ")[1],partes[1],Float.valueOf(partes[2]));
+		        productos.add(p);	        	
+	        }
 	        contador++;
 	      }
 	      in.close();
