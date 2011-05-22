@@ -16,17 +16,17 @@ public class pruebaEntrada {
 		
 		try {
 			
-			s.inicializar("CAJA1", "venta1.xml", "salida1.xml");
+			s.inicializar("CAJA1", "venta1.xml", "salida1E.xml");			
 			s.run();
 			
-			s.inicializar("CAJA1", "venta2.xml", "salida2.xml");
-			//s.run();
+			/*s.inicializar("CAJA1", "venta2.xml", "salida2D.xml");
+			s.run();
 			
-			s.inicializar("CAJA1", "venta3.xml", "salida3.xml");
-			//s.run();
+			s.inicializar("CAJA1", "venta3.xml", "salida3D.xml");
+			s.run();
 			
-			s.inicializar("CAJA1", "venta4.xml", "salida4.xml");
-			//s.run();
+			s.inicializar("CAJA1", "venta4.xml", "salida4D.xml");
+			s.run();*/
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
