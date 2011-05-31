@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ticket>
+	<linTicket>
+		<descr>HEWLETT PACKARD IMPRESORA LASER COLOR CP1515N</descr>
+		<cant>1</cant>
+		<pUnit>300,27</pUnit>
+		<dctoLin>24,02</dctoLin>
+		<pLin>276,25</pLin>
+	</linTicket>
+	<linTicket>
+		<descr>APLI CAJA 100 HOJAS 4400 ETIQUETAS BLANCAS PARA INKJET, LASER Y FOTOCOPIADORA 48.5X25.4MM REF. 1285</descr>
+		<cant>0</cant>
+		<pUnit>15,01</pUnit>
+		<dctoLin>0,00</dctoLin>
+		<pLin>0,00</pLin>
+	</linTicket>
+	<linTicket>
+		<descr>PETRUS CAJA 1200 GRAPAS DE 530/4MM. GALVANIZADAS PARA CLAVADORAS REF 77512</descr>
+		<cant>0</cant>
+		<pUnit>1,45</pUnit>
+		<dctoLin>0,00</dctoLin>
+		<pLin>0,00</pLin>
+	</linTicket>
+	<linTicket>
+		<descr>SAM CAJA 500 SOBRES PAPERFECT PAPEL FSC 110 X 230 MM. TIRA SILICONA SIST.OPEN REF. 249006</descr>
+		<cant>1</cant>
+		<pUnit>17,58</pUnit>
+		<dctoLin>1,41</dctoLin>
+		<pLin>16,17</pLin>
+	</linTicket>
+	<totalAPagar cant="292,42"/>
+	<dctoAcumulado cant="25,43"/>
+	<impuestos cant="54,24"/>
+</ticket>

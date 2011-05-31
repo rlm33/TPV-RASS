@@ -1,0 +1,18 @@
+<!DOCTYPE venta PUBLIC "-//www.cristinacachero.com//DTD venta IS1//ES" "http://artemisa.dlsi.ua.es/~ccachero/isi/venta.dtd">
+
+<venta>
+<fecha dia="X" hora="17:05"/>
+<linventa codProd="143064" cant="1"/>
+<linventa codProd="886108" cant="2"/>
+<linventa codProd="926087" cant="3"/>
+<linventa codProd="926087" cant="4"/>
+<deshacerlinventa/>
+<linventa codProd="886108" cant="6"/>
+<linventa codProd="926087" cant="7"/>
+<linventa codProd="886108" cant="8"/>
+<deshacerlinventa/>
+<deshacerlinventa/>
+<deshacerlinventa/>
+<linventa codProd="886108" cant="8"/>
+<cliente tarjetaFid="true" empleado="true"/>
+</venta>

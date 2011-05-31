@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="jars/jsr311-api-1.1.1.jar"/>
 	<classpathentry kind="lib" path="jdom/build/jdom.jar"/>
 	<classpathentry kind="lib" path="jdom/lib/xerces.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HanHelsing/TPV-EntregaFinal/TPV"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

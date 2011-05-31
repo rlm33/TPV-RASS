@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ticket>
+	<linTicket>
+		<descr>DURACELL PILAS ALCALINAS PLUS TIPO: 3LR12 / EQUIV.: 4,5V / Nº DE PILAS POR BLISTER:1 REF D35006</descr>
+		<cant>2</cant>
+		<pUnit>3,88</pUnit>
+		<dctoLin>0,00</dctoLin>
+		<pLin>7,76</pLin>
+	</linTicket>
+	<linTicket>
+		<descr>CANON CALCULADORA FINANCIERA 12DIG. F-720</descr>
+		<cant>1</cant>
+		<pUnit>11,88</pUnit>
+		<dctoLin>0,00</dctoLin>
+		<pLin>11,88</pLin>
+	</linTicket>
+	<totalAPagar cant="19,64"/>
+	<dctoAcumulado cant="0,00"/>
+	<impuestos cant="3,83"/>
+</ticket>

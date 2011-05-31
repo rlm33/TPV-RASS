@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ticket>
+	<linTicket>
+		<descr>HAMA CABLE USB A-B 1</descr>
+		<cant>2</cant>
+		<pUnit>5,28</pUnit>
+		<dctoLin>1,58</dctoLin>
+		<pLin>8,98</pLin>
+	</linTicket>
+	<totalAPagar cant="8,98"/>
+	<dctoAcumulado cant="1,58"/>
+	<impuestos cant="1,50"/>
+</ticket>
